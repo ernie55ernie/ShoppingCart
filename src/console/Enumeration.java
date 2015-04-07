@@ -22,16 +22,24 @@ public class Enumeration<T> {
 	private List<T> list;
 	int n;
     
-    public void enumerate(List<T> in, int num, int n)
+    public void enumerate(List<T> in, int num, List<Customer> customers, int cus, int n)
     {
     	enumerateList = new ArrayList<ShoppingCart>();
         list = new ArrayList<T>();
+        this.customers = customers.subList(0, cus);
         this.in = in.subList(0, num);
         this.n = n;
         doEnumerate (0, 0);
 
-        /*System.out.println(Arrays.deepToString(enumerateList.toArray()));
-        System.out.println("Size: " + enumerateList.size());*/
+        // System.out.println(Arrays.deepToString(enumerateList.toArray()));
+        System.out.println("Size: " + enumerateList.size());
+        for(Customer customer: this.customers){
+        	for(ShoppingCart shoppingCart: enumerateList){
+        		System.out.print("{ " + customer + shoppingCart);
+        	}
+        	System.out.println();
+        }
+        
     }
     
     public void doEnumerate (int level, int current)

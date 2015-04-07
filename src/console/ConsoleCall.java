@@ -71,12 +71,12 @@ public class ConsoleCall {
 	        switch(r){
 	        case 'n':
 	        	for(i = n; i < m + 1; i++){
-	        		enumeration.enumerate(productFacade.getList(), num, i);
+	        		enumeration.enumerate(productFacade.getList(), num, customerFacade.getList(), cus, i);
 	        	}
 	        	break;
 	        case 'y':
 	        	for(i = n; i < m + 1; i++){
-	        		repeatableEnumeration.enumerate(productFacade.getList(), num, i);
+	        		repeatableEnumeration.enumerate(productFacade.getList(), num, customerFacade.getList(), cus, i);
 	        	}
 	        	break;
 	        }
