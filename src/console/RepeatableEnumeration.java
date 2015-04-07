@@ -4,63 +4,52 @@
 package console;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Scanner;
-import java.util.Set;
+
+import model.cart.ShoppingCart;
+import model.entity.Customer;
+import model.entity.Product;
 
 /**
  * @author ernie
  *
  */
-public class RepeatableEnumeration {
+public class RepeatableEnumeration<T> {
 
-	private static Set<String> set = new HashSet<String>();
-    private static List<Character> list = new ArrayList<Character>();
-	
-	public static void main (String args[])
+	private List<ShoppingCart> enumerateList;
+	private List<T> in;
+	private List<Customer> customers;
+    private List<T> list;
+    private int n;
+    
+    
+    public void enumerate(List<T> in, int num, int n)
     {
-		
-        System.out.println("Please enter the string whose permutations we need to show ");
-        Scanner in = new Scanner(System.in);
-        String original=in.nextLine();
-        System.out.println("Please enter the count of enumeration ");
-        int n = in.nextInt();
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-        System.out.println("Results are :");
-        System.out.println("");
-        System.out.println("");
-        enumerate(original, n);
-        in.close();
-    }
-    
-    
-    
-    public static   void enumerate( String input, int n)
-    {
-        List<Character> in = new ArrayList<Character>();
-        for(char c: input.toCharArray())
-        	in.add(c);
-        doEnumerate ( in, list, 0, 0, n, 0);
+    	enumerateList = new ArrayList<ShoppingCart>();
+        list = new ArrayList<T>();
+        this.in = in.subList(0, num);
+        this.n = n;
+        doEnumerate (0, 0, 0);
         
-        System.out.println(Arrays.deepToString(set.toArray()));
+        /*System.out.println(Arrays.deepToString(enumerateList.toArray()));
+        System.out.println("Size: " + enumerateList.size());*/
     }
     
-    public static    void doEnumerate ( List<Character> in, List<Character> list, int level, int current, int n, int size)
+    public void doEnumerate (int level, int current, int size)
     {	
         if( level == n) {
-            Object[] ca = list.toArray();
-            set.add(Arrays.toString(ca));
+        	ShoppingCart sc = new ShoppingCart();
+        	for(Object product: list){
+        		sc.addItem((Product)product);
+        	}
+        	enumerateList.add(sc);
             return;
         }
         
         for( int i = size; i < in.size(); ++i )
         {
             list.add( in.get(i) );
-            doEnumerate( in, list, level + 1, i + 1, n, size);
+            doEnumerate(level + 1, i + 1, size);
             list.remove(   list.size() - 1 );
             size++;
         }

@@ -4,43 +4,51 @@
 package console;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
+import model.cart.ShoppingCart;
+import model.entity.Customer;
+import model.entity.Product;
 
 /**
  * @author ernie
  *
  */
-public class Enumeration {
-	
-	private Set<Object> set = new HashSet<Object>();
-	
+public class Enumeration<T> {
+
+	private List<ShoppingCart> enumerateList;
+	private List<T> in;
+	private List<Customer> customers;
+	private List<T> list;
 	int n;
     
-    public  void enumerate(int n)
+    public void enumerate(List<T> in, int num, int n)
     {
-        List<Character> list = new ArrayList<Character>();
-        List<Character> in = new ArrayList<Character>();
+    	enumerateList = new ArrayList<ShoppingCart>();
+        list = new ArrayList<T>();
+        this.in = in.subList(0, num);
         this.n = n;
-        doEnumerate ( in, list, 0, 0);
-        
+        doEnumerate (0, 0);
+
+        /*System.out.println(Arrays.deepToString(enumerateList.toArray()));
+        System.out.println("Size: " + enumerateList.size());*/
     }
     
-    public  void doEnumerate ( List<Character> in, List<Character> list, int level, int current)
+    public void doEnumerate (int level, int current)
     {	
         if( level == n) {
-            String string = Arrays.toString(list.toArray());
-            System.out.println(string);
-            set.add(string);
+        	ShoppingCart sc = new ShoppingCart();
+        	for(T product: list){
+        		sc.addItem((Product)product);
+        	}
+        	enumerateList.add(sc);
             return;
         }
         
         for( int i = current; i < in.size(); ++i )
         {
             list.add( in.get(i) );
-            doEnumerate( in,   list, level + 1, i + 1);
+            doEnumerate(level + 1, i + 1);
             list.remove(   list.size() - 1 );
         }
     }

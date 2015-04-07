@@ -5,20 +5,28 @@ package console;
 
 import java.util.Scanner;
 
+import model.entity.Product;
+import model.facade.CustomerFacade;
+import model.facade.ProductFacade;
+
 /**
  * @author user
  *
  */
 public class ConsoleCall {
 	
-	private static Enumeration enumeration = new Enumeration();
-	private static RepeatableEnumeration repeatableEnumeration = new RepeatableEnumeration();
+	private static ProductFacade productFacade;
+	private static CustomerFacade customerFacade;
+	private static Enumeration<Product> enumeration = new Enumeration<Product>();
+	private static RepeatableEnumeration<Product> repeatableEnumeration = new RepeatableEnumeration<Product>();
 	private static Scanner in = new Scanner(System.in);
 	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		productFacade = new ProductFacade("src\\model\\resource\\products.txt");
+		customerFacade = new CustomerFacade("src\\model\\resource\\customers.txt");
 		while(true){
 			System.out.print("Please enter console mode or GUI (c for console, g for GUI):");
 			try{
@@ -63,16 +71,17 @@ public class ConsoleCall {
 	        switch(r){
 	        case 'n':
 	        	for(i = n; i < m + 1; i++){
-	        		enumeration.enumerate(i);
+	        		enumeration.enumerate(productFacade.getList(), num, i);
 	        	}
+	        	break;
 	        case 'y':
 	        	for(i = n; i < m + 1; i++){
-	        		repeatableEnumeration.enumerate("abcd", i);
+	        		repeatableEnumeration.enumerate(productFacade.getList(), num, i);
 	        	}
+	        	break;
 	        }
-	        	
-	        in.close();
 		}catch(Exception e){
+			e.printStackTrace();
 			System.out.println("Wrong input in console mode");
 		}
 	}

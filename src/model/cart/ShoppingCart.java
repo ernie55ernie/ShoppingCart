@@ -1,7 +1,8 @@
 package model.cart;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import model.entity.Product;
 
@@ -11,25 +12,33 @@ import model.entity.Product;
  */
 public class ShoppingCart{
 
-	private Set<ShoppingCartItem> items;
+	private List<ShoppingCartItem> items;
 	private int num;
 	private double total;
 
 	public ShoppingCart(){
-		items = new HashSet<ShoppingCartItem>();
+		items = new ArrayList<ShoppingCartItem>();
 		num = 0;
 		total = 0;
 	}
 
 	public synchronized void addItem(Product product){
-		
+
+        for(ShoppingCartItem item: items){
+        	if(item.getProduct().getId() == product.getId()){
+        		item.addOne();
+        		return;
+        	}
+        }
+
+        ShoppingCartItem scItem = new ShoppingCartItem(product);
+        items.add(scItem);
 	}
 
 	public synchronized void update(Product product, String quantity){
-
 	}
 
-	public synchronized Set<ShoppingCartItem> getItems(){
+	public synchronized List<ShoppingCartItem> getItems(){
 		return items;
 	}
 
@@ -67,5 +76,10 @@ public class ShoppingCart{
 		items.clear();
 		num = 0;
 		total = 0;
+	}
+	
+	@Override
+	public String toString(){
+		return Arrays.toString(items.toArray());
 	}
 }

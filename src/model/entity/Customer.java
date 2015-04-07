@@ -26,6 +26,11 @@ public class Customer implements Serializable{
 	public Customer(Integer id){
 		this.id = id;
 	}
+	
+	public Customer(Integer id, String name){
+		this.id = id;
+		this.name = name;
+	}
 
 	public Customer(Integer id, String name, String email, String phone, String address, String cityRegion){
 		this.id = id;
@@ -34,6 +39,34 @@ public class Customer implements Serializable{
 		this.phone = phone;
 		this.address = address;
 		this.cityRegion = cityRegion;
+	}
+
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**

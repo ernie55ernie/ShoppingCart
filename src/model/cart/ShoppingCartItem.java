@@ -35,4 +35,9 @@ public class ShoppingCartItem{
 	public double getTotal(){
 		return this.getQuantity() * product.getPrice().doubleValue();
 	}
+	
+	@Override
+	public String toString(){
+		return "{" + this.getProduct().getName() + ": " + this.getQuantity() + "}";
+	}
 }

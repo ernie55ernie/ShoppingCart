@@ -21,12 +21,45 @@ public class Product implements Serializable{
 	private Category category;
 
 	public Product(){}
+	
+	public Product(Integer id, String name){
+		this.id = id;
+		this.name = name;
+	}
 
 	public Product(Integer id, String name, Integer price, Date lastUpdate){
 		this.id = id;
 		this.name = name;
 		this.setPrice(price);
 		this.setLastUpdate(lastUpdate);
+	}
+
+	/**
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
