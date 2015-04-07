@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.persistence.EntityManager;
+
 import model.entity.Product;
 
 /**
@@ -13,12 +15,12 @@ import model.entity.Product;
  * @author Ernie
  */
 public class ProductFacade extends AbstractFacade<Product>{
-	//private EntityManager em;
+	private EntityManager em;
 	private List<Product> list;
 
-	/*protected EntityManager getEntityManager(){
+	protected EntityManager getEntityManager(){
 		return em;
-	}*/
+	}
 	
 	public ProductFacade(){
 		super(Product.class);

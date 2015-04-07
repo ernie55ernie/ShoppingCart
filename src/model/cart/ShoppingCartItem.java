@@ -39,7 +39,8 @@ public class ShoppingCartItem{
 	@Override
 	public String toString(){
 		StringBuffer sb = new StringBuffer();
-		for(int i = 0; i < this.getQuantity(); i++)
+		sb.append(this.getProduct());
+		for(int i = 1; i < this.getQuantity(); i++)
 			sb.append(", ").append(this.getProduct());
 		return sb.toString();
 	}

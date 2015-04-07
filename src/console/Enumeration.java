@@ -35,9 +35,9 @@ public class Enumeration<T> {
         System.out.println("Size: " + enumerateList.size());
         for(Customer customer: this.customers){
         	for(ShoppingCart shoppingCart: enumerateList){
-        		System.out.print("{ " + customer + shoppingCart);
+        		System.out.print("{ " + customer + shoppingCart + " },");
         	}
-        	System.out.println();
+        	System.out.println(" },");
         }
         
     }

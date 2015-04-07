@@ -5,7 +5,6 @@ package console;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map.Entry;
 
 import model.cart.ShoppingCart;
 import model.entity.Customer;
@@ -35,7 +34,12 @@ public class RepeatableEnumeration<T> {
         
         // System.out.println(Arrays.deepToString(enumerateList.toArray()));
         System.out.println("Size: " + enumerateList.size());
-        
+        for(Customer customer: this.customers){
+        	for(ShoppingCart shoppingCart: enumerateList){
+        		System.out.println("{ " + customer + shoppingCart + " },");
+        	}
+        	System.out.println();
+        }
         
     }
     
