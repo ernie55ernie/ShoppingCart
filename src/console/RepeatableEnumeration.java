@@ -20,27 +20,29 @@ public class RepeatableEnumeration<T> {
 	private List<T> in;
 	private List<Customer> customers;
     private List<T> list;
+	private List<Object[]> enumeration;
     private int n;
     
     
-    public void enumerate(List<T> in, int num, List<Customer> customers, int cus, int n)
+    public List<Object[]> enumerate(List<T> in, int num, List<Customer> customers, int cus, int n)
     {
     	enumerateList = new ArrayList<ShoppingCart>();
         list = new ArrayList<T>();
+        enumeration = new ArrayList<Object[]>();
         this.customers = customers.subList(0, cus);
         this.in = in.subList(0, num);
         this.n = n;
         doEnumerate (0, 0, 0);
         
-        // System.out.println(Arrays.deepToString(enumerateList.toArray()));
         System.out.println("Size: " + enumerateList.size());
         for(Customer customer: this.customers){
         	for(ShoppingCart shoppingCart: enumerateList){
-        		System.out.println("{ " + customer + shoppingCart + " },");
+        		System.out.print("{ " + customer + ", " + shoppingCart + " },");
+        		enumeration.add(new Object[]{customer, shoppingCart});
         	}
         	System.out.println();
         }
-        
+        return enumeration;
     }
     
     public void doEnumerate (int level, int current, int size)

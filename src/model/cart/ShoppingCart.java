@@ -1,7 +1,6 @@
 package model.cart;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import model.entity.Product;
@@ -80,6 +79,10 @@ public class ShoppingCart{
 	
 	@Override
 	public String toString(){
-		return Arrays.toString(items.toArray());
+		StringBuffer sb = new StringBuffer();
+		sb.append(items.get(0));
+		for(int i = 1; i < items.size(); i++)
+			sb.append(", ").append(items.get(i));
+		return sb.toString();
 	}
 }

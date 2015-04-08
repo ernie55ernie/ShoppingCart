@@ -3,6 +3,8 @@
  */
 package console;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import model.entity.Product;
@@ -28,21 +30,10 @@ public class ConsoleCall {
 		productFacade = new ProductFacade("src\\model\\resource\\products.txt");
 		customerFacade = new CustomerFacade("src\\model\\resource\\customers.txt");
 		while(true){
-			System.out.print("Please enter console mode or GUI (c for console, g for GUI):");
 			try{
-				int c = in.next().charAt(0);
-		        System.out.println("");
-				switch(c){
-				case 'c':
-					consoleMode();
-					in.close();
-					return;
-				case 'g':
-					guiMode();
-					in.close();
-					return;
-				}
-				throw new Exception();
+				consoleMode();
+				in.close();
+				return;
 			}catch(Exception e){
 				System.out.println("Wrong input");	
 			}
@@ -68,25 +59,29 @@ public class ConsoleCall {
 	        System.out.println("");
 	        System.out.println("");
 	        int i = 0;
+	        List<Object[]> list = new ArrayList<Object[]>();
 	        switch(r){
 	        case 'n':
 	        	for(i = n; i < m + 1; i++){
-	        		enumeration.enumerate(productFacade.getList(), num, customerFacade.getList(), cus, i);
+	        		list.addAll(enumeration.enumerate(productFacade.getList(), num, customerFacade.getList(), cus, i));
 	        	}
 	        	break;
 	        case 'y':
 	        	for(i = n; i < m + 1; i++){
-	        		repeatableEnumeration.enumerate(productFacade.getList(), num, customerFacade.getList(), cus, i);
+	        		list.addAll(repeatableEnumeration.enumerate(productFacade.getList(), num, customerFacade.getList(), cus, i));
 	        	}
 	        	break;
 	        }
+	        System.out.println("Size: " + list.size());
+	        Object[][] objects = new Object[list.size()][2];
+	        for(i = 0; i < list.size(); i++){ 
+	        	objects[i][0] = list.get(i)[0];
+	        	objects[i][1] = list.get(i)[1];
+	        }
+        	new DataTable(objects);
 		}catch(Exception e){
 			e.printStackTrace();
 			System.out.println("Wrong input in console mode");
 		}
-	}
-	
-	public static void guiMode(){
-		
 	}
 }
