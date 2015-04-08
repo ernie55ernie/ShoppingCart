@@ -1,7 +1,7 @@
 /**
  * 
  */
-package console;
+package controller.strategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,17 +13,12 @@ import model.entity.Product;
  * @author ernie
  *
  */
-public class Enumeration<T> {
-
-	private List<ShoppingCart> enumerateList;
-	private List<T> in;
-	private List<T> list;
-	int n;
+public class NonRepeatableEnum extends EnumStrategy{
     
-    public List<ShoppingCart> enumerate(List<T> in, int num, int n)
+    public List<ShoppingCart> enumerate(List<Product> in, int num, int n)
     {
     	enumerateList = new ArrayList<ShoppingCart>();
-        list = new ArrayList<T>();
+        list = new ArrayList<Product>();
         this.in = in.subList(0, num);
         this.n = n;
         doEnumerate (0, 0);
@@ -35,7 +30,7 @@ public class Enumeration<T> {
     {	
         if( level == n) {
         	ShoppingCart sc = new ShoppingCart();
-        	for(T product: list){
+        	for(Product product: list){
         		sc.addItem((Product)product);
         	}
         	enumerateList.add(sc);

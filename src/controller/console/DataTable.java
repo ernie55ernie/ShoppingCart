@@ -1,7 +1,7 @@
 /**
  * 
  */
-package console;
+package controller.console;
 
 import java.awt.BorderLayout;
 

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package console;
+package controller.console;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +9,11 @@ import java.util.Scanner;
 
 import model.cart.ShoppingCart;
 import model.entity.Customer;
-import model.entity.Product;
 import model.facade.CustomerFacade;
 import model.facade.ProductFacade;
+import controller.strategy.EnumStrategy;
+import controller.strategy.RepeatableEnum;
+import controller.strategy.NonRepeatableEnum;
 
 /**
  * @author user
@@ -21,8 +23,7 @@ public class ConsoleCall {
 	
 	private static ProductFacade productFacade;
 	private static CustomerFacade customerFacade;
-	private static Enumeration<Product> enumeration = new Enumeration<Product>();
-	private static RepeatableEnumeration<Product> repeatableEnumeration = new RepeatableEnumeration<Product>();
+	private static EnumStrategy enumerationStrategy;
 	private static Scanner in = new Scanner(System.in);
 	
 	/**
@@ -65,13 +66,15 @@ public class ConsoleCall {
 	        List<ShoppingCart> list = new ArrayList<ShoppingCart>();
 	        switch(r){
 	        case 'n':
+	        	enumerationStrategy = new NonRepeatableEnum();
 	        	for(i = n; i < m + 1; i++){
-	        		list.addAll(enumeration.enumerate(productFacade.getList(), num, i));
+	        		list.addAll(enumerationStrategy.enumerate(productFacade.getList(), num, i));
 	        	}
 	        	break;
 	        case 'y':
+	        	enumerationStrategy = new RepeatableEnum();
 	        	for(i = n; i < m + 1; i++){
-	        		list.addAll(repeatableEnumeration.enumerate(productFacade.getList(), num,i));
+	        		list.addAll(enumerationStrategy.enumerate(productFacade.getList(), num,i));
 	        	}
 	        	break;
 	        }
@@ -89,7 +92,7 @@ public class ConsoleCall {
         	new DataTable(objects);
 		}catch(Exception e){
 			e.printStackTrace();
-			System.out.println("Wrong input in console mode");
+			System.out.println("Wrong input in controller.console mode");
 		}
 	}
 }
