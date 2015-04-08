@@ -80,9 +80,9 @@ public class ShoppingCart{
 	@Override
 	public String toString(){
 		StringBuffer sb = new StringBuffer();
-		sb.append(items.get(0));
-		for(int i = 1; i < items.size(); i++)
-			sb.append(", ").append(items.get(i));
+		for(int i = 0; i < items.size() - 1; i++)
+			sb.append(items.get(i)).append(",");
+		sb.append(items.get(items.size() - 1));
 		return sb.toString();
 	}
 }

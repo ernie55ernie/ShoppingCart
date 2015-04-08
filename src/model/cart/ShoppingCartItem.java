@@ -41,7 +41,7 @@ public class ShoppingCartItem{
 		StringBuffer sb = new StringBuffer();
 		sb.append(this.getProduct());
 		for(int i = 1; i < this.getQuantity(); i++)
-			sb.append(", ").append(this.getProduct());
+			sb.append(",").append(this.getProduct());
 		return sb.toString();
 	}
 }

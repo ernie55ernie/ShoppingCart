@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.cart.ShoppingCart;
-import model.entity.Customer;
 import model.entity.Product;
 
 /**
@@ -18,30 +17,18 @@ public class Enumeration<T> {
 
 	private List<ShoppingCart> enumerateList;
 	private List<T> in;
-	private List<Customer> customers;
 	private List<T> list;
-	private List<Object[]> enumeration;
 	int n;
     
-    public List<Object[]> enumerate(List<T> in, int num, List<Customer> customers, int cus, int n)
+    public List<ShoppingCart> enumerate(List<T> in, int num, int n)
     {
     	enumerateList = new ArrayList<ShoppingCart>();
         list = new ArrayList<T>();
-        enumeration = new ArrayList<Object[]>();
-        this.customers = customers.subList(0, cus);
         this.in = in.subList(0, num);
         this.n = n;
         doEnumerate (0, 0);
-
-        System.out.println("Size: " + enumerateList.size());
-        for(Customer customer: this.customers){
-        	for(ShoppingCart shoppingCart: enumerateList){
-        		System.out.print("{ " + customer + ", " + shoppingCart + " },");
-        		enumeration.add(new Object[]{customer, shoppingCart});
-        	}
-        	System.out.println();
-        }
-        return enumeration;
+        
+        return enumerateList;
     }
     
     public void doEnumerate (int level, int current)

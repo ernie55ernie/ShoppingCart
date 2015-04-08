@@ -123,7 +123,8 @@ public class Product implements Serializable{
 
 	@Override
 	public String toString(){
+		//return name;
 		//return "Product[id = " + id + ", name = " + name + "]";
-		return "Product" + id;
+		return "品" + (id + 1);
 	}
 }
