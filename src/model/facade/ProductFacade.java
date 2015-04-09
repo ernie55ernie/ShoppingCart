@@ -34,7 +34,7 @@ public class ProductFacade extends AbstractFacade<Product>{
 			sc = new Scanner(new File(filename));
 			int i = 0;
 			sc.nextLine();
-			while(sc.hasNext() && i < 100){
+			while(sc.hasNext() && i < 200){
 				String e = sc.nextLine();
 				list.add(new Product(i++, e.substring(0, e.indexOf('\t'))));
 			}

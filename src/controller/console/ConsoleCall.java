@@ -55,7 +55,9 @@ public class ConsoleCall {
 	        int m = in.nextInt();
 	        System.out.print("Repeatable (y for yes or n for no): ");
 	        int r = in.next().toLowerCase().charAt(0);
-	        if(r != 'y' && r != 'n')throw new Exception();
+	        if(r != 'y' && r != 'n' || num  <= 0 ||
+	        		cus <= 0 || n <= 0 || m <= 0 ||
+	        		m > num)throw new Exception();
 	        System.out.println("");
 	        System.out.println("");
 	        System.out.println("");

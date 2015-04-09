@@ -33,7 +33,7 @@ public class CustomerFacade extends AbstractFacade<Customer>{
 		try {
 			sc = new Scanner(new File(filename));
 			int i = 0;
-			while(sc.hasNext() && i < 100){
+			while(sc.hasNext() && i < 200){
 				String e = sc.nextLine();
 				list.add(new Customer(i++, e));
 			}
