@@ -5,6 +5,7 @@ package controller.console;
 
 import java.util.Scanner;
 
+import model.cart.ShoppingCartUtils;
 import model.facade.CustomerFacade;
 import model.facade.ProductFacade;
 import controller.strategy.EnumStrategy;
@@ -76,6 +77,7 @@ public class ConsoleCall {
 	        			, num, n, m, customerFacade.getList().subList(0, cus));
 	        	break;
 	        }
+	        ShoppingCartUtils.toTXT(objectArray, "buy1.txt");
         	new DataTable(objectArray);
 		}catch(Exception e){
 			e.printStackTrace();
