@@ -82,7 +82,7 @@ public class ShoppingCart{
 		StringBuffer sb = new StringBuffer();
 		for(int i = 0; i < items.size() - 1; i++)
 			sb.append(items.get(i)).append(",");
-		sb.append(items.get(items.size() - 1));
+		if(items.size() >= 1)sb.append(items.get(items.size() - 1));
 		return sb.toString();
 	}
 }

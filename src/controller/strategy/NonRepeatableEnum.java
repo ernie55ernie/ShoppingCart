@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.cart.ShoppingCart;
+import model.entity.Customer;
 import model.entity.Product;
 
 /**
@@ -15,17 +16,29 @@ import model.entity.Product;
  */
 public class NonRepeatableEnum extends EnumStrategy{
     
-    public List<ShoppingCart> enumerate(List<Product> in, int num, int n)
+    /* (non-Javadoc)
+     * @see controller.strategy.EnumStrategy#enumerate(java.util.List, int, int)
+     */
+    public Object[][] enumerate(List<Product> in, int num, int n, int m, List<Customer> cus)
     {
     	enumerateList = new ArrayList<ShoppingCart>();
         list = new ArrayList<Product>();
+        this.cus = cus;
         this.in = in.subList(0, num);
-        this.n = n;
-        doEnumerate (0, 0);
+        for(int j = n; j < m + 1; j++){
+            this.n = j;
+        	doEnumerate (0, 0);
+        }
         
-        return enumerateList;
+        return genObjectArray();
     }
     
+    /**
+     * Recursive function that will add one elements into {@code list}.
+     * 
+     * @param level In the {@code level} of fill the shopping list
+     * @param current {@code current} product that will be fill in the list
+     */
     public void doEnumerate (int level, int current)
     {	
         if( level == n) {
@@ -34,6 +47,7 @@ public class NonRepeatableEnum extends EnumStrategy{
         		sc.addItem((Product)product);
         	}
         	enumerateList.add(sc);
+        	System.out.println(sc.getNumberOfItem());
             return;
         }
         

@@ -14,11 +14,21 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 /**
+ * This class initialize a table that can show the shopping list
+ * in a more structural way. Sorting can be done while clicking 
+ * on the column above. 
+ * 
  * @author ernie
  *
  */
 public class DataTable {
 
+	
+	/**
+	 * Constructor for the table must take an argument of data.
+	 * @param objects The constructor takes an two dimension array
+	 * of {@line Object}. Initialize the content of the table.
+	 */
 	public DataTable(Object[][] objects){
 		JFrame frame = new JFrame("ShoppingCart enumeration");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

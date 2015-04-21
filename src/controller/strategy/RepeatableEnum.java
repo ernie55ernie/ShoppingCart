@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.cart.ShoppingCart;
+import model.entity.Customer;
 import model.entity.Product;
 
 /**
@@ -16,17 +17,28 @@ import model.entity.Product;
 public class RepeatableEnum extends EnumStrategy{
     
     
-    public List<ShoppingCart> enumerate(List<Product> in, int num, int n)
+    /* (non-Javadoc)
+     * @see controller.strategy.EnumStrategy#enumerate(java.util.List, int, int)
+     */
+    public Object[][] enumerate(List<Product> in, int num, int n, int m, List<Customer> cus)
     {
     	enumerateList = new ArrayList<ShoppingCart>();
         list = new ArrayList<Product>();
+        this.cus = cus;
         this.in = in.subList(0, num);
-        this.n = n;
-        doEnumerate (0, 0, 0);
+        for(int j = n; j < m + 1; j++){
+            this.n = j;
+        	doEnumerate (0, 0, 0);
+        }
         
-        return enumerateList;
+        return genObjectArray();
     }
     
+    /**
+     * @param level
+     * @param current
+     * @param size
+     */
     public void doEnumerate (int level, int current, int size)
     {	
         if( level == n) {
