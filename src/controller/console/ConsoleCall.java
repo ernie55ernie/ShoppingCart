@@ -27,8 +27,8 @@ public class ConsoleCall {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		productFacade = new ProductFacade("src\\model\\resource\\products.txt");
-		customerFacade = new CustomerFacade("src\\model\\resource\\customers.txt");
+		productFacade = ProductFacade.getInstance();
+		customerFacade = CustomerFacade.getInstance();
 		while(true){
 			try{
 				consoleMode();

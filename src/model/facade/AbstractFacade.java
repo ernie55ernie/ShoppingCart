@@ -13,13 +13,13 @@ import javax.persistence.criteria.Root;
  */
 public abstract class AbstractFacade<T>{
 	private Class<T> entityClass;
-
-    public AbstractFacade(Class<T> entityClass) {
-        this.entityClass = entityClass;
-    }
-
+    
 	protected abstract EntityManager getEntityManager();
     protected abstract List<T> getList();
+    
+    protected AbstractFacade(Class<T> entityClass) {
+        this.entityClass = entityClass;
+    }
     
 	public void create(T entity){
 		getEntityManager().persist(entity);

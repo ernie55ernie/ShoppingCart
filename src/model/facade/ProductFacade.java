@@ -17,16 +17,28 @@ import model.entity.Product;
 public class ProductFacade extends AbstractFacade<Product>{
 	private EntityManager em;
 	private List<Product> list;
+	private static ProductFacade productFacade;
 
 	protected EntityManager getEntityManager(){
 		return em;
 	}
 	
-	public ProductFacade(){
+    public static ProductFacade getInstance(){
+    	if(productFacade == null){
+    		synchronized(ProductFacade.class){
+    			if(productFacade == null){
+    				productFacade = new ProductFacade("src\\model\\resource\\products.txt");
+    			}
+    		}
+    	}
+    	return productFacade;
+    }
+	
+	protected ProductFacade(){
 		super(Product.class);
 	}
 
-	public ProductFacade(String filename){
+	protected ProductFacade(String filename){
 		super(Product.class);
 		list = new ArrayList<Product>();
 		Scanner sc;

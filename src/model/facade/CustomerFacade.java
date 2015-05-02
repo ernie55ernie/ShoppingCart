@@ -17,16 +17,28 @@ import model.entity.Customer;
 public class CustomerFacade extends AbstractFacade<Customer>{
 	private EntityManager em;
 	private List<Customer> list;
+	private static CustomerFacade customerFacade;
 
 	protected EntityManager getEntityManager(){
 		return em;
 	}
 	
-	public CustomerFacade(){
+    public static CustomerFacade getInstance(){
+    	if(customerFacade == null){
+    		synchronized(CustomerFacade.class){
+    			if(customerFacade == null){
+    				customerFacade = new CustomerFacade("src\\model\\resource\\customers.txt");
+    			}
+    		}
+    	}
+    	return customerFacade;
+    }
+	
+	protected CustomerFacade(){
 		super(Customer.class);
 	}
 
-	public CustomerFacade(String filename){
+	protected CustomerFacade(String filename){
 		super(Customer.class);
 		list = new ArrayList<Customer>();
 		Scanner sc;
