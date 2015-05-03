@@ -15,6 +15,7 @@ import model.cart.ShoppingCart;
 import model.cart.ShoppingCartUtils;
 import model.entity.Customer;
 import model.entity.Product;
+import model.facade.CustomerFacade;
 
 /**
  * {@link RuleBase} stores inference {@link Rule} from {@link ShoppingCart}} data using {@link Map}.
@@ -54,6 +55,12 @@ public class RuleBase {
 	}
 	
 	private void addRule(String string){
+		int equal = string.indexOf('=');
+		String[] shoppingCartArray = string.substring(equal + 1).split(",");
+		if(shoppingCartArray.length <= 2) return;
+		
+		int customerId = Integer.parseInt(shoppingCartArray[0].substring(1));
+		Customer customer = CustomerFacade.getInstance().find(customerId);
 		
 	}
 	

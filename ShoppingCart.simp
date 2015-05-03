@@ -47,7 +47,7 @@
       </counter>
       <counter>
         <item-type stereotype="" type="AbstractElementGroup" />
-        <value>4</value>
+        <value>13</value>
       </counter>
     </entity-ids>
     <diagrams>
@@ -1778,10 +1778,10 @@
             <owned-items />
             <style class="default" />
             <attributes>
-              <attribute id="a0d728effa594424c8445240dda43ec59297" cid="ELEM094" name="antecedent" type="List&lt;Object&gt;" type-id="List&lt;Object&gt;" visibility="private">
+              <attribute id="a0d728effa594424c8445240dda43ec59297" cid="ELEM094" name="antecedent" type="List&lt;ShoppingCartItem&gt;" type-id="List&lt;ShoppingCartItem&gt;" visibility="private">
                 <style class="default" />
               </attribute>
-              <attribute id="a5a5967cae2b944f782a6d5120f058d1f342" cid="ELEM095" name="consequent" type="Object" type-id="Object" visibility="private">
+              <attribute id="a5a5967cae2b944f782a6d5120f058d1f342" cid="ELEM095" name="consequent" type="List&lt;ShoppingCartItem&gt;" type-id="List&lt;ShoppingCartItem&gt;" visibility="private">
                 <style class="default" />
               </attribute>
               <attribute id="af2f227dd071d44db934c682b4873d5c6753" cid="ELEM098" name="customer" type="Customer" type-id="Class:di283181705561905739" visibility="private">
@@ -1863,18 +1863,18 @@
         </abstract-items>
         <layer name="Default" visible="true" enabled="true" locked="false">
           <item id="di871013270473135212" iid="da31e66d7f934ebb83983b911bb5e74a" creation-date="04/24/2015 14:33:19" order-index="0" type="entity">
-            <layout ax="224" ay="358" awidth="179" aheight="160" x="224" y="358" width="179" height="160" angle="0" />
+            <layout ax="219.5" ay="357" awidth="253" aheight="160" x="219.5" y="357" width="253" height="160" angle="0" />
             <class />
           </item>
           <item id="di844576961516341125" iid="d3934a72457047ecba7952b28b18b044" creation-date="04/24/2015 17:19:56" order-index="1" type="entity">
-            <layout ax="219.5" ay="138" awidth="188" aheight="160" x="219.5" y="138" width="188" height="160" angle="0" />
+            <layout ax="252" ay="133" awidth="188" aheight="160" x="252" y="133" width="188" height="160" angle="0" />
             <class />
           </item>
           <item id="di113199440136850062" iid="1282b94e7bb74cb3b5091ff10bf984f8" creation-date="04/24/2015 17:27:18" order-index="2" type="relation">
-            <layout line-style="oblique" lock-start-point="false" lock-end-point="true" lock-to-fields="false" name-position="10,-10" auto-path="" x1="313" y1="298" x2="312" y2="358" start-border-pos="0.625854857424472" end-border-pos="0.122905027932961">
+            <layout line-style="oblique" lock-start-point="false" lock-end-point="true" lock-to-fields="false" name-position="10,-10" auto-path="" x1="345" y1="293" x2="344" y2="357" start-border-pos="0.626477545880257" end-border-pos="0.122905027932961">
               <points>
-                <point x="313" y="298" />
-                <point x="312" y="358" />
+                <point x="345" y="293" />
+                <point x="344" y="357" />
               </points>
             </layout>
             <relation from="di844576961516341125" from-iid="d3934a72457047ecba7952b28b18b044" to="di871013270473135212" to-iid="da31e66d7f934ebb83983b911bb5e74a" />
