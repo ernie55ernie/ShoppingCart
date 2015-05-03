@@ -45,6 +45,33 @@ public class Rule {
 	}
 	
 	/**
+	 * @param sb
+	 * @return
+	 */
+	public String antecedentString(){
+		String string = customer.toString();
+		for(Product product: antecedent){
+			string = string + '*' + product;
+		}
+		return string;
+	}
+	
+	public String consequentString(){
+		String string = "";
+		for(Product product: consequent){
+			string = string + '*' + product;
+		}
+		return string;
+	}
+	
+	/**
+	 * @return
+	 */
+	public List<Product> getAntecedent(){
+		return antecedent;
+	}
+	
+	/**
 	 * @return
 	 */
 	public List<Product> getConsequent(){
@@ -63,17 +90,9 @@ public class Rule {
 	@Override
 	public String toString(){
 		StringBuffer sb = new StringBuffer();
-		sb.append(customer);
-		sb.append(',');
-		for(Product product: antecedent){
-			sb.append('*');
-			sb.append(product);
-		}
+		sb.append(antecedentString());
 		sb.append("->");
-		for(Product product: consequent){
-			sb.append('*');
-			sb.append(product);
-		}
+		sb.append(consequentString());
 		return sb.toString();
 	}
 }

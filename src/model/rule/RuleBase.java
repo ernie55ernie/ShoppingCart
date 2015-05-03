@@ -11,8 +11,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections4.map.MultiKeyMap;
+
 import model.cart.ShoppingCart;
-import model.cart.ShoppingCartUtils;
 import model.entity.Customer;
 import model.entity.Product;
 import model.facade.CustomerFacade;
@@ -27,13 +28,13 @@ import model.facade.CustomerFacade;
  */
 public class RuleBase {
 
-	private Map<String, Rule> rules;
+	private MultiKeyMap<String, Rule> rules;
 	
 	/**
 	 * Initialize map storage.
 	 */
 	public RuleBase(){
-		rules = new HashMap<String, Rule>();
+		rules = new MultiKeyMap<String, Rule>();
 	}
 	
 	/**
@@ -57,11 +58,15 @@ public class RuleBase {
 	private void addRule(String string){
 		int equal = string.indexOf('=');
 		String[] shoppingCartArray = string.substring(equal + 1).split(",");
-		if(shoppingCartArray.length <= 2) return;
+		int length = shoppingCartArray.length;
+		if(length <= 2) return;
 		
 		int customerId = Integer.parseInt(shoppingCartArray[0].substring(1));
 		Customer customer = CustomerFacade.getInstance().find(customerId);
-		
+		int currentDivision;
+		for(currentDivision = 0; currentDivision < length; currentDivision++){
+			
+		}
 	}
 	
 	public Rule removeRule(String string){
