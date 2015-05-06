@@ -55,7 +55,7 @@ public class ShoppingCartUtils {
 	private static Integer[] randomInt(int numOfRand, int upperbound){
 		Set<Integer> set = new HashSet<Integer>();
 		while(set.size() < numOfRand){
-			set.add((int)(Math.random() * upperbound) + 1);
+			set.add((int)(Math.random() * upperbound));
 		}
 		Integer[] integerArray = set.toArray(new Integer[set.size()]);
 		return integerArray;

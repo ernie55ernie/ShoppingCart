@@ -46,8 +46,8 @@ public class RuleBase {
 	public void addRules(File file){
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-			String string;
-			while((string = br.readLine()) == null){
+			String string = null;
+			while((string = br.readLine()) != null){
 				addRule(string);
 			}
 			br.close();
@@ -56,38 +56,48 @@ public class RuleBase {
 		}
 	}
 	
+	/**
+	 * @param string
+	 */
 	private void addRule(String string){
+		// System.out.println(string);
+		
 		int equal = string.indexOf('=');
 		String[] shoppingCartArray = string.substring(equal + 1).split(",");
 		int length = shoppingCartArray.length;
-		if(length <= 2) return;
+		// System.out.println(Arrays.toString(shoppingCartArray));
+		if(length < 3) return;
 		
-		int customerId = Integer.parseInt(shoppingCartArray[0].substring(1));
-		Customer customer = CustomerFacade.getInstance().find(customerId);
+		int customerId = Integer.parseInt(shoppingCartArray[0].substring(1)) - 1;
+		Customer customer = CustomerFacade.getInstance().getList().get(customerId);
 		
-		ProductFacade productFacade = ProductFacade.getInstance();
-		int currentItem;
-		for(currentItem = 0; currentItem < length; currentItem++){
+		List<Product> productList = ProductFacade.getInstance().getList();
+		int currentItem, currentIteration;
+		for(currentItem = 1; currentItem < length; currentItem++){
 			List<Product> antecedent = new ArrayList<Product>();
 			List<Product> consequent = new ArrayList<Product>();
-			for(String aProduct: shoppingCartArray){
+			for(currentIteration = 1; currentIteration < shoppingCartArray.length; currentIteration++){
 				antecedent.add(
-						productFacade.find(Integer.parseInt(aProduct.substring(1))));
+						productList.get(Integer.parseInt(shoppingCartArray[currentIteration]
+								.substring(1)) - 1));
 			}
-			consequent.add(antecedent.remove(currentItem));
+			consequent.add(antecedent.remove(currentItem - 1));
 			Rule rule = new Rule(customer, antecedent, consequent);
 			rules.put(customer.toString(),
 					rule.antecedentString(),
 					rule.consequentString(),
 					rule);
+			// System.out.println(rule);
 		}
 	}
 	
-	public Rule removeRule(String string){
-		return rules.remove(string);
-	}
-	
-	public List<Product> findRule(String string){
-		return rules.get(string).getConsequent();
+	@Override
+	public String toString(){
+		StringBuffer sb = new StringBuffer();
+		for(Rule rule: rules.values()){
+			sb.append(rule);
+			sb.append("\n");
+		}
+		return sb.toString();
 	}
 }

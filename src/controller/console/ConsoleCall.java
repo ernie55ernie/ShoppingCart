@@ -3,11 +3,13 @@
  */
 package controller.console;
 
+import java.io.File;
 import java.util.Scanner;
 
 import model.cart.ShoppingCartUtils;
 import model.facade.CustomerFacade;
 import model.facade.ProductFacade;
+import model.rule.RuleBase;
 import controller.strategy.EnumStrategy;
 import controller.strategy.NonRepeatableEnum;
 import controller.strategy.RepeatableEnum;
@@ -31,7 +33,8 @@ public class ConsoleCall {
 		customerFacade = CustomerFacade.getInstance();
 		while(true){
 			try{
-				consoleMode();
+				// enumerateShoppingList();
+				generateRuleList();
 				in.close();
 				return;
 			}catch(Exception e){
@@ -43,7 +46,7 @@ public class ConsoleCall {
 	/**
 	 * Run the console that accept user keyboard input 
 	 */
-	public static void consoleMode(){
+	public static void enumerateShoppingList(){
 		try{
 			System.out.print("Please enter the number of products: ");
 	        int num=in.nextInt();
@@ -77,11 +80,21 @@ public class ConsoleCall {
 	        			, num, n, m, customerFacade.getList().subList(0, cus));
 	        	break;
 	        }
-	        ShoppingCartUtils.toTXT(objectArray, "buy1.txt", 5);
-        	new DataTable(objectArray);
+	        
+	        System.out.println("\nPlease enter the number of shopping list: ");
+	        int numOfShoppingList = in.nextInt();
+	        
+	        ShoppingCartUtils.toTXT(objectArray, "buy1.txt", numOfShoppingList);
+        	// new DataTable(objectArray);
 		}catch(Exception e){
 			e.printStackTrace();
 			System.out.println("Wrong input in controller.console mode");
 		}
+	}
+	
+	public static void generateRuleList(){
+		RuleBase rb = new RuleBase();
+		rb.addRules(new File("buy1.txt"));
+		System.out.print(rb.toString());
 	}
 }

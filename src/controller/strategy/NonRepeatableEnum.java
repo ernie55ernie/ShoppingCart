@@ -47,7 +47,6 @@ public class NonRepeatableEnum extends EnumStrategy{
         		sc.addItem((Product)product);
         	}
         	enumerateList.add(sc);
-        	System.out.println(sc.getNumberOfItem());
             return;
         }
         

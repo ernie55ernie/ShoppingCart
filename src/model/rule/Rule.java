@@ -57,9 +57,9 @@ public class Rule {
 	}
 	
 	public String consequentString(){
-		String string = "";
-		for(Product product: consequent){
-			string = string + '*' + product;
+		String string = consequent.get(0).toString();
+		for(int i = 1; i < consequent.size(); i++){
+			string = string + '*' + consequent.get(i);
 		}
 		return string;
 	}
