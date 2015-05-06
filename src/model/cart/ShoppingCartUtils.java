@@ -9,6 +9,8 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author ernie
@@ -38,15 +40,25 @@ public class ShoppingCartUtils {
 		File file = new File(fileName);
 		try {
 			FileWriter fw = new FileWriter(file);
-			
+			Integer[] integerArray = randomInt(n, array.length);
 			for(int i = 0; i < n; i++){
-				fw.write("清單" + (i+1) + "=" + array[i][0] + "," + array[i][1] + "\n");
+				fw.write("清單" + (i+1) + "=" + array[integerArray[i]][0] 
+						+ "," + array[integerArray[i]][1] + "\n");
 			}
 			fw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	private static Integer[] randomInt(int numOfRand, int upperbound){
+		Set<Integer> set = new HashSet<Integer>();
+		while(set.size() < numOfRand){
+			set.add((int)(Math.random() * upperbound) + 1);
+		}
+		Integer[] integerArray = set.toArray(new Integer[set.size()]);
+		return integerArray;
 	}
 	
 

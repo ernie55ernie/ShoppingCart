@@ -77,7 +77,7 @@ public class ConsoleCall {
 	        			, num, n, m, customerFacade.getList().subList(0, cus));
 	        	break;
 	        }
-	        ShoppingCartUtils.toTXT(objectArray, "buy1.txt");
+	        ShoppingCartUtils.toTXT(objectArray, "buy1.txt", 5);
         	new DataTable(objectArray);
 		}catch(Exception e){
 			e.printStackTrace();
