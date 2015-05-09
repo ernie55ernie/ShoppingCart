@@ -4,11 +4,13 @@
 package controller.console;
 
 import java.io.File;
+import java.util.List;
 import java.util.Scanner;
 
 import model.cart.ShoppingCartUtils;
 import model.facade.CustomerFacade;
 import model.facade.ProductFacade;
+import model.rule.Rule;
 import model.rule.RuleBase;
 import controller.strategy.EnumStrategy;
 import controller.strategy.NonRepeatableEnum;
@@ -88,13 +90,50 @@ public class ConsoleCall {
         	// new DataTable(objectArray);
 		}catch(Exception e){
 			e.printStackTrace();
-			System.out.println("Wrong input in controller.console mode");
+			System.out.println("Wrong input in controller.console shopping list mode");
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	public static void generateRuleList(){
 		RuleBase rb = new RuleBase();
 		rb.addRules(new File("buy1.txt"));
 		System.out.print(rb.toString());
+		
+		try{
+			System.out.print("Please enter the shopping list of a specific customer: ");
+			String shoppingList = in.nextLine();
+			String ancedentList = antecedentString(shoppingList);
+			List<Rule> list = rb.findByAntecedent(ancedentList);
+			
+			String response;
+			while(true){
+				if(list.size() == 0){
+					System.out.println("No suggestion");
+					break;
+				}
+				System.out.print("Possible buying item: " + list.get(0).consequentString() + 
+						"\nDoes the customer buy the item (yes or no)? ");
+				response = in.nextLine();
+				System.out.println("The customer says " + response);
+				if(response.equals("no")){
+					list.remove(0);
+				}else if(response.equals("yes")) break;
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			System.out.println("Wrong input in controller.console rule list mode");
+		}
+	}
+	
+	/**
+	 * @param shoppingList
+	 * @return
+	 */
+	private static String antecedentString(String shoppingList){
+		shoppingList = shoppingList.substring(1, shoppingList.length() - 1);
+		return shoppingList.replace(',', '*');
 	}
 }

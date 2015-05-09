@@ -17,8 +17,6 @@ import model.entity.Product;
 import model.facade.CustomerFacade;
 import model.facade.ProductFacade;
 
-import org.apache.commons.collections4.map.MultiKeyMap;
-
 /**
  * {@link RuleBase} stores inference {@link Rule} from {@link ShoppingCart}} data using {@link Map}.
  *  Inference rules can be loaded from a file or {@link String}. {@link RuleBase} use the provided 
@@ -29,13 +27,13 @@ import org.apache.commons.collections4.map.MultiKeyMap;
  */
 public class RuleBase {
 
-	private MultiKeyMap<String, Rule> rules;
+	private TripleKeyMap<String, Rule> rules;
 	
 	/**
 	 * Initialize map storage.
 	 */
 	public RuleBase(){
-		rules = new MultiKeyMap<String, Rule>();
+		rules = new TripleKeyMap<String, Rule>();
 	}
 	
 	/**
@@ -60,12 +58,10 @@ public class RuleBase {
 	 * @param string
 	 */
 	private void addRule(String string){
-		// System.out.println(string);
 		
 		int equal = string.indexOf('=');
 		String[] shoppingCartArray = string.substring(equal + 1).split(",");
 		int length = shoppingCartArray.length;
-		// System.out.println(Arrays.toString(shoppingCartArray));
 		if(length < 3) return;
 		
 		int customerId = Integer.parseInt(shoppingCartArray[0].substring(1)) - 1;
@@ -87,8 +83,15 @@ public class RuleBase {
 					rule.antecedentString(),
 					rule.consequentString(),
 					rule);
-			// System.out.println(rule);
 		}
+	}
+	
+	/**
+	 * @param string
+	 * @return
+	 */
+	public List<Rule> findByAntecedent(String string){
+		return rules.getByAntecedent(string);
 	}
 	
 	@Override
@@ -96,6 +99,10 @@ public class RuleBase {
 		StringBuffer sb = new StringBuffer();
 		for(Rule rule: rules.values()){
 			sb.append(rule);
+			/*sb.append(' ');
+			sb.append(rule.antecedentString());
+			sb.append(' ');
+			sb.append(rule.consequentString());*/
 			sb.append("\n");
 		}
 		return sb.toString();

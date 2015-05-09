@@ -59,30 +59,16 @@ public class Rule {
 	public String consequentString(){
 		String string = consequent.get(0).toString();
 		for(int i = 1; i < consequent.size(); i++){
-			string = string + '*' + consequent.get(i);
+			string = string + '+' + consequent.get(i);
 		}
 		return string;
-	}
-	
-	/**
-	 * @return
-	 */
-	public List<Product> getAntecedent(){
-		return antecedent;
-	}
-	
-	/**
-	 * @return
-	 */
-	public List<Product> getConsequent(){
-		return consequent;
 	}
 	
 	@Override
 	public boolean equals(Object object){
 		if(object instanceof Rule){
 			Rule rule = (Rule)object;
-			return this.customer == rule.customer &&
+			return this.customer.equals(rule.customer) &&
 					this.antecedent.equals(rule.antecedent);
 		}return false;
 	}
