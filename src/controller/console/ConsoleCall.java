@@ -12,6 +12,7 @@ import model.facade.CustomerFacade;
 import model.facade.ProductFacade;
 import model.rule.Rule;
 import model.rule.RuleBase;
+import controller.gui.RuleGUI;
 import controller.strategy.EnumStrategy;
 import controller.strategy.NonRepeatableEnum;
 import controller.strategy.RepeatableEnum;
@@ -101,7 +102,7 @@ public class ConsoleCall {
 		RuleBase rb = new RuleBase();
 		rb.addRules(new File("buy1.txt"));
 		System.out.print(rb.toString());
-		
+		new RuleGUI();
 		try{
 			System.out.print("Please enter the shopping list of a specific customer: ");
 			String shoppingList = in.nextLine();
