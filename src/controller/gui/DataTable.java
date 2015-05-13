@@ -5,7 +5,7 @@ package controller.gui;
 
 import java.awt.BorderLayout;
 
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.RowSorter;
@@ -21,17 +21,20 @@ import javax.swing.table.TableRowSorter;
  * @author ernie
  *
  */
-public class DataTable {
+public class DataTable extends JPanel{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Constructor for the table must take an argument of data.
 	 * @param objects The constructor takes an two dimension array
 	 * of {@line Object}. Initialize the content of the table.
 	 */
 	public DataTable(Object[][] objects){
-		JFrame frame = new JFrame("ShoppingCart enumeration");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		String[] columns = new String[]{"Customer", "Product"};
 		
@@ -52,8 +55,8 @@ public class DataTable {
 		RowSorter<TableModel> rowSorter = new TableRowSorter<TableModel>(tableModel);
 		table.setRowSorter(rowSorter);
 		JScrollPane jScrollPane = new JScrollPane(table);
-		frame.add(jScrollPane, BorderLayout.CENTER);
-	    frame.setSize(500, 300);
-	    frame.setVisible(true);
+		this.add(jScrollPane, BorderLayout.CENTER);
+	    this.setSize(500, 300);
+	    this.setVisible(true);
 	}
 }

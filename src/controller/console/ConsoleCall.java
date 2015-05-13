@@ -27,6 +27,7 @@ public class ConsoleCall {
 	private static CustomerFacade customerFacade;
 	private static EnumStrategy enumerationStrategy;
 	private static Scanner in = new Scanner(System.in);
+	private static Object[][] objectArray;
 	
 	/**
 	 * @param args
@@ -36,11 +37,12 @@ public class ConsoleCall {
 		customerFacade = CustomerFacade.getInstance();
 		while(true){
 			try{
-				// enumerateShoppingList();
+				enumerateShoppingList();
 				generateRuleList();
 				in.close();
 				return;
 			}catch(Exception e){
+				e.printStackTrace();
 				System.out.println("Wrong input");	
 			}
 		}
@@ -84,11 +86,10 @@ public class ConsoleCall {
 	        	break;
 	        }
 	        
-	        System.out.println("\nPlease enter the number of shopping list: ");
+	        System.out.print("\nPlease enter the number of shopping list: ");
 	        int numOfShoppingList = in.nextInt();
 	        
-	        ShoppingCartUtils.toTXT(objectArray, "buy1.txt", numOfShoppingList);
-        	// new DataTable(objectArray);
+	        ConsoleCall.objectArray = ShoppingCartUtils.toTXT(objectArray, "buy1.txt", numOfShoppingList);
 		}catch(Exception e){
 			e.printStackTrace();
 			System.out.println("Wrong input in controller.console shopping list mode");
@@ -102,9 +103,10 @@ public class ConsoleCall {
 		RuleBase rb = new RuleBase();
 		rb.addRules(new File("buy1.txt"));
 		System.out.print(rb.toString());
-		new RuleGUI();
+		new RuleGUI(objectArray);
 		try{
 			System.out.print("Please enter the shopping list of a specific customer: ");
+			in.nextLine();
 			String shoppingList = in.nextLine();
 			String ancedentList = antecedentString(shoppingList);
 			List<Rule> list = rb.findByAntecedent(ancedentList);

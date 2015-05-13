@@ -21,7 +21,7 @@ public class TripleKeyMap<K, V> {
 	/**
 	 * 
 	 */
-	private ArrayListMultimap<K, V> ancedentMap;
+	private ArrayListMultimap<K, V> antecedentMap;
 	
 	/**
 	 * 
@@ -38,21 +38,21 @@ public class TripleKeyMap<K, V> {
 	 */
 	public TripleKeyMap(){
 		customerMap = ArrayListMultimap.create();
-		ancedentMap = ArrayListMultimap.create();
+		antecedentMap = ArrayListMultimap.create();
 		consequentMap = ArrayListMultimap.create();
 		list = new ArrayList<V>();
 	}
 	
 	/**
 	 * @param customer
-	 * @param ancedent
+	 * @param antecedent
 	 * @param consequent
 	 * @param value
 	 * @return
 	 */
-	public V put(K customer, K ancedent, K consequent, V value){
+	public V put(K customer, K antecedent, K consequent, V value){
 		customerMap.put(customer, value);
-		ancedentMap.put(ancedent, value);
+		antecedentMap.put(antecedent, value);
 		consequentMap.put(consequent, value);
 		list.add(value);
 		return value;
@@ -63,7 +63,7 @@ public class TripleKeyMap<K, V> {
 	 * @return
 	 */
 	public List<V> getByAntecedent(K key){
-		return ancedentMap.get(key);
+		return antecedentMap.get(key);
 	}
 	
 	/**
@@ -80,6 +80,26 @@ public class TripleKeyMap<K, V> {
 	 */
 	public List<V> getByCustomer(K key){
 		return customerMap.get(key);
+	}
+	
+	/**
+	 * @param antecedentStirng
+	 * @return
+	 */
+	public boolean containsAntecedent(String antecedentString){
+		return antecedentMap.containsKey(antecedentString);
+	}
+	
+	/**
+	 * @param consequentString
+	 * @return
+	 */
+	public boolean containsConsequent(String consequentString){
+		return consequentMap.containsKey(consequentString);
+	}
+	
+	public boolean contains(V v){
+		return list.contains(v);
 	}
 	
 	/**

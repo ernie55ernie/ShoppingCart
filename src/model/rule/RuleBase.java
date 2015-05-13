@@ -79,10 +79,12 @@ public class RuleBase {
 			}
 			consequent.add(antecedent.remove(currentItem - 1));
 			Rule rule = new Rule(customer, antecedent, consequent);
-			rules.put(customer.toString(),
+			if(!rules.contains(rule)){
+				rules.put(customer.toString(),
 					rule.antecedentString(),
 					rule.consequentString(),
 					rule);
+			}
 		}
 	}
 	
