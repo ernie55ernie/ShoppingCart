@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.collect.ArrayListMultimap;
+
 import model.cart.ShoppingCart;
 import model.entity.Customer;
 import model.entity.Product;
@@ -26,14 +28,34 @@ import model.facade.ProductFacade;
  *
  */
 public class RuleBase {
-
-	private TripleKeyMap<String, Rule> rules;
+	/**
+	 * 
+	 */
+	private ArrayListMultimap<String, Rule> customerMap;
+	
+	/**
+	 * 
+	 */
+	private ArrayListMultimap<String, Rule> antecedentMap;
+	
+	/**
+	 * 
+	 */
+	private ArrayListMultimap<String, Rule> consequentMap;
+	
+	/**
+	 * 
+	 */
+	private List<Rule> list;
 	
 	/**
 	 * Initialize map storage.
 	 */
 	public RuleBase(){
-		rules = new TripleKeyMap<String, Rule>();
+		customerMap = ArrayListMultimap.create();
+		antecedentMap = ArrayListMultimap.create();
+		consequentMap = ArrayListMultimap.create();
+		list = new ArrayList<Rule>();
 	}
 	
 	/**
@@ -79,8 +101,8 @@ public class RuleBase {
 			}
 			consequent.add(antecedent.remove(currentItem - 1));
 			Rule rule = new Rule(customer, antecedent, consequent);
-			if(!rules.contains(rule)){
-				rules.put(customer.toString(),
+			if(!contains(rule)){
+				put(customer.toString(),
 					rule.antecedentString(),
 					rule.consequentString(),
 					rule);
@@ -89,17 +111,22 @@ public class RuleBase {
 	}
 	
 	/**
-	 * @param string
 	 * @return
 	 */
-	public List<Rule> findByAntecedent(String string){
-		return rules.getByAntecedent(string);
+	public Object[][] getObjectArray(){
+		Object[][] objects = new Object[list.size()][2];
+		for(int i = 0; i < list.size(); i++){
+			Rule rule = list.get(i);
+			objects[i][0] = rule.antecedentString();
+			objects[i][1] = rule.consequentString();
+		}
+		return objects;
 	}
 	
 	@Override
 	public String toString(){
 		StringBuffer sb = new StringBuffer();
-		for(Rule rule: rules.values()){
+		for(Rule rule: values()){
 			sb.append(rule);
 			/*sb.append(' ');
 			sb.append(rule.antecedentString());
@@ -108,5 +135,71 @@ public class RuleBase {
 			sb.append("\n");
 		}
 		return sb.toString();
+	}
+	
+	/**
+	 * @param customer
+	 * @param antecedent
+	 * @param consequent
+	 * @param value
+	 * @return
+	 */
+	public Rule put(String customer, String antecedent, String consequent, Rule value){
+		customerMap.put(customer, value);
+		antecedentMap.put(antecedent, value);
+		consequentMap.put(consequent, value);
+		list.add(value);
+		return value;
+	}
+	
+	/**
+	 * @param key
+	 * @return
+	 */
+	public List<Rule> getByAntecedent(String key){
+		return antecedentMap.get(key);
+	}
+	
+	/**
+	 * @param key
+	 * @return
+	 */
+	public List<Rule> getByConsequent(String key){
+		return consequentMap.get(key);
+	}
+	
+	/**
+	 * @param key
+	 * @return
+	 */
+	public List<Rule> getByCustomer(String key){
+		return customerMap.get(key);
+	}
+	
+	/**
+	 * @param antecedentStirng
+	 * @return
+	 */
+	public boolean containsAntecedent(String antecedentString){
+		return antecedentMap.containsKey(antecedentString);
+	}
+	
+	/**
+	 * @param consequentString
+	 * @return
+	 */
+	public boolean containsConsequent(String consequentString){
+		return consequentMap.containsKey(consequentString);
+	}
+	
+	public boolean contains(Rule v){
+		return list.contains(v);
+	}
+	
+	/**
+	 * @return
+	 */
+	public List<Rule> values(){
+		return list;
 	}
 }

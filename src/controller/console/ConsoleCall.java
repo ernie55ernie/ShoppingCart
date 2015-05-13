@@ -88,7 +88,7 @@ public class ConsoleCall {
 	        
 	        System.out.print("\nPlease enter the number of shopping list: ");
 	        int numOfShoppingList = in.nextInt();
-	        
+	        if(numOfShoppingList > objectArray.length)numOfShoppingList = objectArray.length;
 	        ConsoleCall.objectArray = ShoppingCartUtils.toTXT(objectArray, "buy1.txt", numOfShoppingList);
 		}catch(Exception e){
 			e.printStackTrace();
@@ -103,14 +103,13 @@ public class ConsoleCall {
 		RuleBase rb = new RuleBase();
 		rb.addRules(new File("buy1.txt"));
 		System.out.print(rb.toString());
-		new RuleGUI(objectArray);
-		try{
+		new RuleGUI(objectArray, rb);
+		/*try{
 			System.out.print("Please enter the shopping list of a specific customer: ");
 			in.nextLine();
 			String shoppingList = in.nextLine();
 			String ancedentList = antecedentString(shoppingList);
-			List<Rule> list = rb.findByAntecedent(ancedentList);
-			
+			List<Rule> list = rb.getByAntecedent(ancedentList);
 			String response;
 			while(true){
 				if(list.size() == 0){
@@ -125,10 +124,11 @@ public class ConsoleCall {
 					list.remove(0);
 				}else if(response.equals("yes")) break;
 			}
+			
 		}catch(Exception e){
 			e.printStackTrace();
 			System.out.println("Wrong input in controller.console rule list mode");
-		}
+		}*/
 	}
 	
 	/**

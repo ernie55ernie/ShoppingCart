@@ -69,7 +69,8 @@ public class Rule {
 		if(object instanceof Rule){
 			Rule rule = (Rule)object;
 			return this.customer.equals(rule.customer) &&
-					this.antecedent.equals(rule.antecedent);
+					this.antecedent.equals(rule.antecedent) &&
+					this.consequent.equals(rule.consequent);
 		}return false;
 	}
 	
