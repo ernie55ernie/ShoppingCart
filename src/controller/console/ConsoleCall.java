@@ -4,13 +4,11 @@
 package controller.console;
 
 import java.io.File;
-import java.util.List;
 import java.util.Scanner;
 
 import model.cart.ShoppingCartUtils;
 import model.facade.CustomerFacade;
 import model.facade.ProductFacade;
-import model.rule.Rule;
 import model.rule.RuleBase;
 import controller.gui.RuleGUI;
 import controller.strategy.EnumStrategy;
@@ -27,7 +25,6 @@ public class ConsoleCall {
 	private static CustomerFacade customerFacade;
 	private static EnumStrategy enumerationStrategy;
 	private static Scanner in = new Scanner(System.in);
-	private static Object[][] objectArray;
 	
 	/**
 	 * @param args
@@ -89,7 +86,7 @@ public class ConsoleCall {
 	        System.out.print("\nPlease enter the number of shopping list: ");
 	        int numOfShoppingList = in.nextInt();
 	        if(numOfShoppingList > objectArray.length)numOfShoppingList = objectArray.length;
-	        ConsoleCall.objectArray = ShoppingCartUtils.toTXT(objectArray, "buy1.txt", numOfShoppingList);
+	        ShoppingCartUtils.toTXT(objectArray, "buy1.txt", numOfShoppingList);
 		}catch(Exception e){
 			e.printStackTrace();
 			System.out.println("Wrong input in controller.console shopping list mode");
@@ -103,7 +100,7 @@ public class ConsoleCall {
 		RuleBase rb = new RuleBase();
 		rb.addRules(new File("buy1.txt"));
 		System.out.print(rb.toString());
-		new RuleGUI(objectArray, rb);
+		new RuleGUI(rb);
 		/*try{
 			System.out.print("Please enter the shopping list of a specific customer: ");
 			in.nextLine();
@@ -135,8 +132,8 @@ public class ConsoleCall {
 	 * @param shoppingList
 	 * @return
 	 */
-	private static String antecedentString(String shoppingList){
+	/*private static String antecedentString(String shoppingList){
 		shoppingList = shoppingList.substring(1, shoppingList.length() - 1);
 		return shoppingList.replace(',', '*');
-	}
+	}*/
 }

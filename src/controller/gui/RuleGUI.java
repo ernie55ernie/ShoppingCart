@@ -96,7 +96,7 @@ public class RuleGUI extends JFrame{
 	/**
 	 * @param objectArray
 	 */
-	public RuleGUI(Object[][] objectArray, RuleBase ruleBase){
+	public RuleGUI(RuleBase ruleBase){
 		super("Rule implication");
 		this.setLayout(new BorderLayout());
 		

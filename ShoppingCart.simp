@@ -45,10 +45,6 @@
         <item-type stereotype="" type="StartEndSymbol" />
         <value>2</value>
       </counter>
-      <counter>
-        <item-type stereotype="" type="AbstractElementGroup" />
-        <value>13</value>
-      </counter>
     </entity-ids>
     <diagrams>
       <counter>
@@ -58,6 +54,10 @@
       <counter>
         <type>SoftwareIdeasModeler.Core.Diagrams.UmlDiagrams.UmlClassDiagram</type>
         <value>3</value>
+      </counter>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.Diagrams.UmlDiagrams.UmlUseCaseDiagram</type>
+        <value>1</value>
       </counter>
     </diagrams>
     <fields>
@@ -1434,6 +1434,25 @@
             <layout ax="812.7991" ay="315.065" awidth="150" aheight="60" x="812.7991" y="315.065" width="150" height="60" angle="0" />
           </item>
         </layer>
+      </diagram>
+      <diagram type="uml-usecase" id="p950308278932050086" name="UseCaseDiagram1" order-index="1" overview-order-index="0" show-id="false" show-name="true" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" auto-routed-paths="false">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="solid" />
+        </style>
+        <meta>
+          <authors>
+            <author> </author>
+          </authors>
+          <description />
+          <creation-date>05/14/2015 07:40:07</creation-date>
+          <change-date>05/14/2015 07:40:07</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <abstract-items />
+        <layer name="Default" visible="true" enabled="true" locked="false" />
       </diagram>
     </model>
     <model id="p459234602176796501" name="EntityDiagram" type="model" namespace="" order-index="1">

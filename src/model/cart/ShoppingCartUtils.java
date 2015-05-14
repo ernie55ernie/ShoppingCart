@@ -36,23 +36,18 @@ public class ShoppingCartUtils {
 	 * @param n The shopping list that will be write to the 
 	 * file
 	 */
-	public static Object[][] toTXT(Object[][] array, String fileName, int n){
+	public static void toTXT(Object[][] array, String fileName, int n){
 		File file = new File(fileName);
-		Object[][] objects = new Object[n][2];
 		try {
 			FileWriter fw = new FileWriter(file);
 			if(n < array.length){
 				Integer[] integerArray = randomInt(n, array.length);
 				for(int i = 0; i < n; i++){
-					objects[i][0] = array[integerArray[i]][0];
-					objects[i][1] = array[integerArray[i]][1]; 
 					fw.write("清單" + (i+1) + "=" + array[integerArray[i]][0] 
 							+ "," + array[integerArray[i]][1] + "\n");
 				}
 			}else{
 				for(int i = 0; i < n; i++){
-					objects[i][0] = array[i][0];
-					objects[i][1] = array[i][1]; 
 					fw.write("清單" + (i+1) + "=" + array[i][0] 
 							+ "," + array[i][1] + "\n");
 				}
@@ -61,8 +56,6 @@ public class ShoppingCartUtils {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return objects;
-		
 	}
 	
 	/**
