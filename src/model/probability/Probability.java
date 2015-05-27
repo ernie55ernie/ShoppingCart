@@ -5,6 +5,8 @@ package model.probability;
 
 import java.util.List;
 
+import model.entity.Product;
+
 /**
  * @author ernie
  *
@@ -66,6 +68,20 @@ public class Probability {
 			if(index != condition.size() - 1)sb.append(',');
 		}
 		return sb.append('}').toString();
+	}
+	
+	/**
+	 * @return
+	 */
+	public int getProfit(){
+		int i = 1;
+		for(Object object: result){
+			if(object instanceof Product){
+				Product product = (Product)object;
+				i *= product.getProfit();
+			}
+		}
+		return i;
 	}
 	
 	/**

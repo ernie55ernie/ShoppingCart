@@ -3,6 +3,8 @@ package model.cart;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.DateTime;
+
 import model.entity.Product;
 
 /**
@@ -13,10 +15,30 @@ public class ShoppingCart{
 
 	private List<ShoppingCartItem> items;
 	private double total;
+	private DateTime time;
 
 	public ShoppingCart(){
 		items = new ArrayList<ShoppingCartItem>();
 		total = 0;
+		time = new DateTime(2010 + (int)(5 * Math.random()),
+				(int)(12 * Math.random()) + 1,
+				(int)(29 * Math.random()) + 1,
+				(int)(24 * Math.random()) + 1,
+				(int)(60 * Math.random()) + 1);
+	}
+
+	/**
+	 * @return the time
+	 */
+	public DateTime getTime() {
+		return time;
+	}
+
+	/**
+	 * @param time the time to set
+	 */
+	public void setTime(DateTime time) {
+		this.time = time;
 	}
 
 	public synchronized void addItem(Product product){

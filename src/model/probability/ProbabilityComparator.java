@@ -7,7 +7,7 @@ import java.util.Comparator;
 
 
 /**
- * @author user
+ * @author ernie
  *
  */
 public class ProbabilityComparator implements Comparator<Probability> {

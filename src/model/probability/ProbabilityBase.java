@@ -235,8 +235,23 @@ public class ProbabilityBase {
 		return null;
 	}
 	
+	/**
+	 * @param customer
+	 * @return
+	 */
 	public List<Probability> getHighestThreeProduct(String customer){
 		Collections.sort(this.getByCondition(customer), new ProbabilityComparator());
+		List<Probability> sortedThreeProbability = new ArrayList<Probability>();
+		sortedThreeProbability.addAll(this.getByCondition(customer).subList(0, 3));
+		return sortedThreeProbability;
+	}
+	
+	/**
+	 * @param customer
+	 * @return
+	 */
+	public List<Probability> getHighestThreeProfit(String customer){
+		Collections.sort(this.getByCondition(customer), new ProfitComparator());
 		List<Probability> sortedThreeProbability = new ArrayList<Probability>();
 		sortedThreeProbability.addAll(this.getByCondition(customer).subList(0, 3));
 		return sortedThreeProbability;

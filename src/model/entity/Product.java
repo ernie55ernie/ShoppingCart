@@ -22,16 +22,18 @@ public class Product implements Serializable{
 	
 	private Integer profit;
 
-	public Product(){}
+	public Product(){
+		profit = (int)(Math.random() * 10);
+	}
 	
 	public Product(Integer id, String name){
+		this();
 		this.id = id;
 		this.name = name;
 	}
 
 	public Product(Integer id, String name, Integer price, Date lastUpdate){
-		this.id = id;
-		this.name = name;
+		this(id, name);
 		this.setPrice(price);
 		this.setLastUpdate(lastUpdate);
 	}

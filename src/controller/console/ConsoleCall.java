@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import model.cart.ShoppingCartUtils;
+import model.entity.Product;
 import model.facade.CustomerFacade;
 import model.facade.ProductFacade;
 import model.probability.Probability;
@@ -106,11 +107,15 @@ public class ConsoleCall {
 	 * 
 	 */
 	public static void generateRuleList(){
+		System.out.print("Please enter the file name: ");
+		String fileName = in.nextLine();
+
 		rb = new RuleBase();
-		rb.addRules(new File("buy1.csv"));
-		sl = ShoppingCartUtils.fromTxt(new File("buy1.csv"));
+		rb.addRules(new File(fileName));
+		sl = ShoppingCartUtils.fromTxt(new File(fileName));
 		// System.out.print(rb.toString());
 		// new RuleGUI(rb);
+		
 	}
 
 	/**
@@ -118,7 +123,10 @@ public class ConsoleCall {
 	 */
 	public static void calculateProbability(){
 		pb = new ProbabilityBase(rb, sl);
-
+		
+		System.out.print("Open profit mode (y for yes, n for no):");
+		char p = in.nextLine().toLowerCase().charAt(0);
+		
 		System.out.print("Please enter the condition and the result of the conditional probability: ");
 		/** Using Scanner nextLine() method instead of next() method. Because next() will stop input stream
 		 *	while space occurs.
@@ -129,20 +137,19 @@ public class ConsoleCall {
 		}else{
 			List<Probability> pl;
 			if(conditionalProbability.contains("客"))
-				pl = pb.getHighestThreeProduct(conditionalProbability);
+				if(p == 'n')
+					pl = pb.getHighestThreeProduct(conditionalProbability);
+				else{
+					for(Product product :rb.products()){
+						System.out.println(product + ": " + product.getProfit());
+					}
+					pl = pb.getHighestThreeProfit(conditionalProbability);
+				}
 			else
 				pl = pb.getByCondition(conditionalProbability);	
-			for(Probability p: pl){
-				System.out.println(p);
+			for(Probability probability: pl){
+				System.out.println(probability);
 			}	
 		}
-//		List<Probability> pl = pb.getByCondition("{客1,品1}");
-//		float total = 0;
-//		for(Probability p: pl){
-//			total += p.getProbability();
-//			System.out.println(p);
-//		}
-//		System.out.println(total);
-		// System.out.println(pb);
 	}
 }
