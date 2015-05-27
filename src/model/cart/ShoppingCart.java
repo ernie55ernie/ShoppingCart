@@ -22,9 +22,9 @@ public class ShoppingCart{
 		total = 0;
 		time = new DateTime(2010 + (int)(5 * Math.random()),
 				(int)(12 * Math.random()) + 1,
-				(int)(29 * Math.random()) + 1,
-				(int)(24 * Math.random()) + 1,
-				(int)(60 * Math.random()) + 1);
+				(int)(27 * Math.random()) + 1,
+				(int)(23 * Math.random()) + 1,
+				(int)(59 * Math.random()) + 1);
 	}
 
 	/**

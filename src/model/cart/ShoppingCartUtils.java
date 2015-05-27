@@ -102,6 +102,10 @@ public class ShoppingCartUtils {
 		return null;
 	}
 	
+	/**
+	 * @param file
+	 * @return
+	 */
 	public static Object[][] fromTxt(File file){
 		ArrayList<Object[]> objectArrayOfArray = new ArrayList<Object[]>();
 		try {
@@ -133,4 +137,13 @@ public class ShoppingCartUtils {
 		return objectArrayOfArray.toArray(new Object[objectArrayOfArray.size()][2]);
 	}
 	
+	public static Object[][] addShoppingListTime(Object[][] objectArrays){
+		Object[][] timeObjectArrays = new Object[objectArrays.length][3];
+		for(int index = 0; index < objectArrays.length; index++){
+			timeObjectArrays[index][1] = objectArrays[index][0];
+			timeObjectArrays[index][2] = objectArrays[index][1];
+			timeObjectArrays[index][0] = ((ShoppingCart)objectArrays[index][1]).getTime();
+		}
+		return timeObjectArrays;
+	}
 }

@@ -34,6 +34,11 @@ public class Rule {
 	private List<Product> consequent;
 	
 	/**
+	 * 
+	 */
+	private ShoppingCart shoppingCart;
+	
+	/**
 	 * @param customer
 	 * @param antecedent
 	 * @param consequent
@@ -44,6 +49,20 @@ public class Rule {
 		this.consequent = consequent;
 	}
 	
+	/**
+	 * @return the shoppingCart
+	 */
+	public ShoppingCart getShoppingCart() {
+		return shoppingCart;
+	}
+
+	/**
+	 * @param shoppingCart the shoppingCart to set
+	 */
+	public void setShoppingCart(ShoppingCart shoppingCart) {
+		this.shoppingCart = shoppingCart;
+	}
+
 	/**
 	 * @param sb
 	 * @return

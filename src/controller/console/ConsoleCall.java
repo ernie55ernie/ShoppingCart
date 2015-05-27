@@ -14,6 +14,7 @@ import model.facade.ProductFacade;
 import model.probability.Probability;
 import model.probability.ProbabilityBase;
 import model.rule.RuleBase;
+import controller.gui.RuleGUI;
 import controller.strategy.EnumStrategy;
 import controller.strategy.NonRepeatableEnum;
 import controller.strategy.RepeatableEnum;
@@ -43,7 +44,7 @@ public class ConsoleCall {
 			try{
 				// enumerateShoppingList();
 				generateRuleList();
-				calculateProbability();
+				// calculateProbability();
 				in.close();
 				return;
 			}catch(Exception e){
@@ -109,12 +110,14 @@ public class ConsoleCall {
 	public static void generateRuleList(){
 		System.out.print("Please enter the file name: ");
 		String fileName = in.nextLine();
-
+		File file = new File(fileName);
+		
+		sl = ShoppingCartUtils.fromTxt(file);
+		
 		rb = new RuleBase();
-		rb.addRules(new File(fileName));
-		sl = ShoppingCartUtils.fromTxt(new File(fileName));
+		rb.addRules(sl);
 		// System.out.print(rb.toString());
-		// new RuleGUI(rb);
+		new RuleGUI(ShoppingCartUtils.addShoppingListTime(sl), rb);
 		
 	}
 

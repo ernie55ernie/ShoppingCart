@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Set;
 
 import model.cart.ShoppingCart;
+import model.cart.ShoppingCartItem;
 import model.entity.Customer;
 import model.entity.Product;
 import model.facade.CustomerFacade;
@@ -78,6 +79,7 @@ public class RuleBase {
 	 *  for every line of string and transfer it to {@link Rule}.
 	 * @param file
 	 */
+	@Deprecated
 	public void addRules(File file){
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
@@ -94,6 +96,7 @@ public class RuleBase {
 	/**
 	 * @param string
 	 */
+	@Deprecated
 	private void addRule(String string){
 		
 		String[] shoppingCartArray = string.split(",");
@@ -121,6 +124,52 @@ public class RuleBase {
 			}
 			consequent.add(antecedent.remove(currentItem - 1));
 			Rule rule = new Rule(customer, antecedent, consequent);
+			if(!contains(rule)){
+				put(customer.toString(),
+					rule.antecedentString(),
+					rule.consequentString(),
+					rule);
+			}
+		}
+	}
+	
+	/**
+	 * @param objectArrays
+	 */
+	public void addRules(Object[][] objectArrays){
+		for(Object[] objectArray: objectArrays){
+			addRule(objectArray);
+		}
+	}
+	
+	/**
+	 * @param objectArrays
+	 */
+	public void addRule(Object[] objectArray){
+
+		Customer customer = (Customer)objectArray[0];
+		ShoppingCart shoppingCart = (ShoppingCart)objectArray[1];
+		int length = shoppingCart.getNumberOfItems();
+		if(length < 1) return;
+		int currentItem, currentIteration;
+		List<ShoppingCartItem> items = shoppingCart.getItems();
+		
+		for(currentItem = 0; currentItem < length; currentItem++){
+			List<Product> consequent = new ArrayList<Product>();
+			List<Product> antecedent = new ArrayList<Product>();
+			/**
+			 * This can't be move to the outer for loop because every
+			 * rule need a list of product itself.
+			 */
+			for(currentIteration = 0; currentIteration < length; currentIteration++){
+				Product product = items.get(currentIteration).getProduct();
+				antecedent.add(product);
+				products.add(product);
+			}
+			
+			consequent.add(antecedent.remove(currentItem));
+			Rule rule = new Rule(customer, antecedent, consequent);
+			rule.setShoppingCart(shoppingCart);
 			if(!contains(rule)){
 				put(customer.toString(),
 					rule.antecedentString(),

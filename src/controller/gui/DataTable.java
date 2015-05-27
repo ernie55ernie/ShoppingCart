@@ -40,7 +40,6 @@ public class DataTable extends JPanel{
 	public DataTable(Object[][] objects, String[] columns){
 		TableModel tableModel = new DefaultTableModel(objects, columns){
 			private static final long serialVersionUID = 1L;
-
 			public Class<?> getColumnClass(int column) {
 		        Class<?> returnValue;
 		        if ((column >= 0) && (column < getColumnCount())) {
@@ -61,6 +60,7 @@ public class DataTable extends JPanel{
 	    // setSize(800, 200);
 		// System.out.println(this.getWidth() + ", " + this.getHeight());
 	}
+	
 	/*
 	public void setModel(Object[][] objects, String[] columns){
 		TableModel tableModel = new DefaultTableModel(objects, columns){

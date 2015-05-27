@@ -57,7 +57,7 @@ public class Probability {
 		this.occurance = occurance;
 		this.probability = occurance / (float)conditional;
 	}
-	
+
 	/**
 	 * @return
 	 */

@@ -4,6 +4,8 @@
 package controller.gui;
 
 import java.awt.BorderLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -40,22 +42,15 @@ public class RuleGUI extends JFrame{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	
-	/**
-	 * 
-	 */
-	private JFileChooser fcBuyList = new JFileChooser(new File(
-				System.getProperty("user.dir")));
-
-	/**
-	 * 
-	 */
-	private JButton btnBuyList = new JButton("Buy List");
-	
 	/**
 	 * 
 	 */
 	private RuleBase ruleBase;
+	
+	/**
+	 * 
+	 */
+	private Object[][] objectArrays;
 	
 	/**
 	 * 
@@ -66,6 +61,11 @@ public class RuleGUI extends JFrame{
 	 * 
 	 */
 	private DataTable ruleTable;
+	
+	/**
+	 * 
+	 */
+	private DataTable shoppingListTable;
 	
 	/**
 	 * 
@@ -110,10 +110,13 @@ public class RuleGUI extends JFrame{
 	/**
 	 * @param objectArray
 	 */
-	public RuleGUI(RuleBase ruleBase){
+	public RuleGUI(Object[][] objectArrays, RuleBase ruleBase){
 		super("Rule implication");
-		this.setLayout(new BorderLayout());
-		
+		GridBagLayout layout = new GridBagLayout();
+		layout.columnWidths = new int[]{500, 500, 500};
+		layout.rowHeights = new int[]{100, 600, 100};
+		this.setLayout(layout);
+		this.objectArrays = objectArrays;
 		this.ruleBase = ruleBase;
 		
 		initializeGraph();
@@ -123,7 +126,7 @@ public class RuleGUI extends JFrame{
 		this.getContentPane().add(jScrollPane, BorderLayout.PAGE_END);*/
 		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(800, 600);
+		this.setSize(1600, 800);
 		this.setVisible(true);
 	}
 	
@@ -131,7 +134,7 @@ public class RuleGUI extends JFrame{
 	 * 
 	 */
 	public void initializeGraph(){
-
+		/*
 		graph = new mxGraph();
 		Object parent = graph.getDefaultParent();
 		
@@ -158,21 +161,38 @@ public class RuleGUI extends JFrame{
 		
 		mxGraphComponent graphComponent = new mxGraphComponent(graph);
 		graphComponent.setConnectable(false);	// Disable pull edges from vertices
-		getContentPane().add(graphComponent, BorderLayout.PAGE_START);
 		
-		buttonListener = new ButtonListener();
+		GridBagConstraints c = new GridBagConstraints();
+		c.gridx = 4;
+		c.gridy = 1;
+		getContentPane().add(graphComponent, c);
+		*/
+		
+		/*buttonListener = new ButtonListener();
 		btnImply = new JButton("Imply");
 		btnImply.addActionListener(buttonListener);
-		getContentPane().add(btnImply, BorderLayout.LINE_START);
+		c.gridx = 3;
+		c.gridy = 1;
+		getContentPane().add(btnImply, c);*/
 		
 		ruleTable = new DataTable(ruleBase.getObjectArray(), new String[]{"Antecedent", "Consequent"});
 		JScrollPane jScrollPane = new JScrollPane(ruleTable);
-		getContentPane().add(jScrollPane, BorderLayout.CENTER);
+		GridBagConstraints c = new GridBagConstraints();
+		c.fill = GridBagConstraints.BOTH;
+		c.gridx = 1;
+		c.gridy = 1;
+		getContentPane().add(jScrollPane, c);
 		
-		btnNotAccept = new JButton("Not accept");
+		/*btnNotAccept = new JButton("Not accept");
 		btnNotAccept.addActionListener(buttonListener);
-		getContentPane().add(btnNotAccept, BorderLayout.LINE_END);
+		c.gridx = 5;
+		c.gridy = 1;
+		getContentPane().add(btnNotAccept, c);*/
 		
+		shoppingListTable = new DataTable(objectArrays, new String[]{"Time", "Customer", "Product"});
+		c.gridx = 2;
+		c.gridy = 1;
+		getContentPane().add(shoppingListTable, c);
 		
 	}
 /*
