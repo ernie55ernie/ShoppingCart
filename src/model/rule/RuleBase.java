@@ -148,6 +148,11 @@ public class RuleBase {
 	public void addRule(Object[] objectArray){
 
 		Customer customer = (Customer)objectArray[0];
+		if(customersOccurance.containsKey(customer)){
+			customersOccurance.put(customer, customersOccurance.get(customer) + 1);
+		}else{
+			customersOccurance.put(customer, 1);
+		}
 		ShoppingCart shoppingCart = (ShoppingCart)objectArray[1];
 		int length = shoppingCart.getNumberOfItems();
 		if(length < 1) return;

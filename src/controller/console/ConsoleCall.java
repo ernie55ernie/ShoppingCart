@@ -124,6 +124,7 @@ public class ConsoleCall {
 	 * 
 	 */
 	public static void calculateProbability(){
+		//System.out.println()
 		pb = new ProbabilityBase(rb, sl);
 
 		new RuleGUI(ShoppingCartUtils.addShoppingListTime(sl), rb, pb);

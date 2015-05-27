@@ -114,7 +114,7 @@ public class ShoppingCartUtils {
 			List<Customer> customerList = CustomerFacade.getInstance().getList();
 			List<Product> productList = ProductFacade.getInstance().getList();
 			while((string = br.readLine()) != null){
-				
+				string = string.substring(string.indexOf('=') + 1);
 				String[] shoppingCartArray = string.split(",");
 				int customerId = Integer.parseInt(shoppingCartArray[0].substring(1)) - 1;
 				int currentItem;

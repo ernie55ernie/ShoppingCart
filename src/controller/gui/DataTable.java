@@ -6,7 +6,6 @@ package controller.gui;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.RowSorter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -33,6 +32,11 @@ public class DataTable extends JPanel{
 	private JTable table;
 	
 	/**
+	 * 
+	 */
+	private TableRowSorter<TableModel> rowSorter;
+	
+	/**
 	 * Constructor for the table must take an argument of data.
 	 * @param objects The constructor takes an two dimension array
 	 * of {@line Object}. Initialize the content of the table.
@@ -52,13 +56,17 @@ public class DataTable extends JPanel{
 		};
 		table = new JTable(tableModel);
 		// table.setSize(800, 200);
-		RowSorter<TableModel> rowSorter = new TableRowSorter<TableModel>(tableModel);
+		rowSorter = new TableRowSorter<TableModel>(tableModel);
 		table.setRowSorter(rowSorter);
 		JScrollPane jScrollPane = new JScrollPane(table);
 		// jScrollPane.setSize(800, 200);
 		add(jScrollPane);
 	    // setSize(800, 200);
 		// System.out.println(this.getWidth() + ", " + this.getHeight());
+	}
+	
+	public TableRowSorter<TableModel> getRowSorter(){
+		return rowSorter;
 	}
 	
 	/*

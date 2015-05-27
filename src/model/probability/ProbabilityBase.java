@@ -4,7 +4,6 @@
 package model.probability;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -273,8 +272,8 @@ public class ProbabilityBase {
 			objects[i][0] = probability.getCondition();
 			objects[i][1] = probability.getResult();
 			objects[i][2] = probability.getProbability();
+			i++;
 		}
-		System.out.println(Arrays.deepToString(objects));
 		return objects;
 	}
 	
