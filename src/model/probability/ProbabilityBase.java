@@ -4,6 +4,7 @@
 package model.probability;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -62,8 +63,8 @@ public class ProbabilityBase {
 	 * @param rb
 	 */
 	public ProbabilityBase(RuleBase ruleBase, Object[][] shoppingLists){
-		conditionMap = ArrayListMultimap.create();
-		resultMap = ArrayListMultimap.create();
+		this.conditionMap = ArrayListMultimap.create();
+		this.resultMap = ArrayListMultimap.create();
 		this.probabilitySet = new HashSet<Probability>();
 		this.ruleBase = ruleBase;
 		this.products = ruleBase.products();
@@ -240,9 +241,13 @@ public class ProbabilityBase {
 	 * @return
 	 */
 	public List<Probability> getHighestThreeProduct(String customer){
-		Collections.sort(this.getByCondition(customer), new ProbabilityComparator());
+		List<Probability> conditionList = getByCondition(customer);
+		Collections.sort(conditionList, new ProbabilityComparator());
 		List<Probability> sortedThreeProbability = new ArrayList<Probability>();
-		sortedThreeProbability.addAll(this.getByCondition(customer).subList(0, 3));
+		if(conditionList.size() < 3){
+			sortedThreeProbability.addAll(conditionList);
+		}else
+			sortedThreeProbability.addAll(conditionList.subList(0, 3));
 		return sortedThreeProbability;
 	}
 	
@@ -255,6 +260,22 @@ public class ProbabilityBase {
 		List<Probability> sortedThreeProbability = new ArrayList<Probability>();
 		sortedThreeProbability.addAll(this.getByCondition(customer).subList(0, 3));
 		return sortedThreeProbability;
+	}
+	
+
+	/**
+	 * @return
+	 */
+	public Object[][] getObjectArray(){
+		Object[][] objects = new Object[probabilitySet.size()][3];
+		int i = 0;
+		for(Probability probability: probabilitySet){
+			objects[i][0] = probability.getCondition();
+			objects[i][1] = probability.getResult();
+			objects[i][2] = probability.getProbability();
+		}
+		System.out.println(Arrays.deepToString(objects));
+		return objects;
 	}
 	
 	@Override

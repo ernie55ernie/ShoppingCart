@@ -19,6 +19,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 
+import model.probability.ProbabilityBase;
 import model.rule.Rule;
 import model.rule.RuleBase;
 
@@ -55,7 +56,17 @@ public class RuleGUI extends JFrame{
 	/**
 	 * 
 	 */
+	private ProbabilityBase probabilityBase;
+	
+	/**
+	 * 
+	 */
 	private List<Rule> currentList;
+	
+	/**
+	 * 
+	 */
+	private DataTable probabilityTable;
 	
 	/**
 	 * 
@@ -110,7 +121,7 @@ public class RuleGUI extends JFrame{
 	/**
 	 * @param objectArray
 	 */
-	public RuleGUI(Object[][] objectArrays, RuleBase ruleBase){
+	public RuleGUI(Object[][] objectArrays, RuleBase ruleBase, ProbabilityBase probabilityBase){
 		super("Rule implication");
 		GridBagLayout layout = new GridBagLayout();
 		layout.columnWidths = new int[]{500, 500, 500};
@@ -118,8 +129,9 @@ public class RuleGUI extends JFrame{
 		this.setLayout(layout);
 		this.objectArrays = objectArrays;
 		this.ruleBase = ruleBase;
+		this.probabilityBase = probabilityBase;
 		
-		initializeGraph();
+		initialize();
 		
 		/*ruleTable = new ruleTable(objectArray, new String[]{"Customer", "Product"});
 		JScrollPane jScrollPane = new JScrollPane(ruleTable);
@@ -133,7 +145,7 @@ public class RuleGUI extends JFrame{
 	/**
 	 * 
 	 */
-	public void initializeGraph(){
+	public void initialize(){
 		/*
 		graph = new mxGraph();
 		Object parent = graph.getDefaultParent();
@@ -175,9 +187,17 @@ public class RuleGUI extends JFrame{
 		c.gridy = 1;
 		getContentPane().add(btnImply, c);*/
 		
-		ruleTable = new DataTable(ruleBase.getObjectArray(), new String[]{"Antecedent", "Consequent"});
-		JScrollPane jScrollPane = new JScrollPane(ruleTable);
+		probabilityTable = new DataTable(probabilityBase.getObjectArray(), new String[]{"Condition", "Consequent", "Probability"});
+		JScrollPane jScrollPane = new JScrollPane(probabilityTable);
 		GridBagConstraints c = new GridBagConstraints();
+		c.fill = GridBagConstraints.BOTH;
+		c.gridx = 0;
+		c.gridy = 1;
+		getContentPane().add(jScrollPane, c);
+		
+		ruleTable = new DataTable(ruleBase.getObjectArray(), new String[]{"Antecedent", "Consequent"});
+		jScrollPane = new JScrollPane(ruleTable);
+		c = new GridBagConstraints();
 		c.fill = GridBagConstraints.BOTH;
 		c.gridx = 1;
 		c.gridy = 1;
@@ -190,9 +210,10 @@ public class RuleGUI extends JFrame{
 		getContentPane().add(btnNotAccept, c);*/
 		
 		shoppingListTable = new DataTable(objectArrays, new String[]{"Time", "Customer", "Product"});
+		jScrollPane = new JScrollPane(shoppingListTable);
 		c.gridx = 2;
 		c.gridy = 1;
-		getContentPane().add(shoppingListTable, c);
+		getContentPane().add(jScrollPane, c);
 		
 	}
 /*

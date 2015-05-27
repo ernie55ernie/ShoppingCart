@@ -44,7 +44,7 @@ public class ConsoleCall {
 			try{
 				// enumerateShoppingList();
 				generateRuleList();
-				// calculateProbability();
+				calculateProbability();
 				in.close();
 				return;
 			}catch(Exception e){
@@ -117,7 +117,6 @@ public class ConsoleCall {
 		rb = new RuleBase();
 		rb.addRules(sl);
 		// System.out.print(rb.toString());
-		new RuleGUI(ShoppingCartUtils.addShoppingListTime(sl), rb);
 		
 	}
 
@@ -126,6 +125,8 @@ public class ConsoleCall {
 	 */
 	public static void calculateProbability(){
 		pb = new ProbabilityBase(rb, sl);
+
+		new RuleGUI(ShoppingCartUtils.addShoppingListTime(sl), rb, pb);
 		
 		System.out.print("Open profit mode (y for yes, n for no):");
 		char p = in.nextLine().toLowerCase().charAt(0);
