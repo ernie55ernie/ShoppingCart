@@ -179,7 +179,7 @@ public class ProbabilityBase {
 			
 			for(Product product: products){
 				conditionList = new ArrayList<Object>();
-						conditionList.add(customer);
+				conditionList.add(customer);
 				conditionList.add(1, product);
 				for(Product resultProduct: products){
 					if(resultProduct.equals(product))continue;

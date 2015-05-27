@@ -98,6 +98,19 @@ public class ShoppingCart{
 		return false;
 	}
 	
+	public boolean hasProducts(List<Object> objects){
+		for(Object object: objects){
+			if(object instanceof Product){
+				Product product = (Product)object;
+				for(ShoppingCartItem item: items){
+					if(item.getProduct().equals(product))continue;
+				}
+			}
+			return false;
+		}
+		return true;
+	}
+	
 	@Override
 	public String toString(){
 		StringBuffer sb = new StringBuffer();
