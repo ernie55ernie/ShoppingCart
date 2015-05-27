@@ -12,12 +12,10 @@ import model.entity.Product;
 public class ShoppingCart{
 
 	private List<ShoppingCartItem> items;
-	private int num;
 	private double total;
 
 	public ShoppingCart(){
 		items = new ArrayList<ShoppingCartItem>();
-		num = 0;
 		total = 0;
 	}
 
@@ -29,7 +27,7 @@ public class ShoppingCart{
         		return;
         	}
         }
-
+        
         ShoppingCartItem scItem = new ShoppingCartItem(product);
         items.add(scItem);
 	}
@@ -46,7 +44,6 @@ public class ShoppingCart{
 		for(ShoppingCartItem item: items){
 			numberOfItems += item.getQuantity();
 		}
-
 		return numberOfItems;
 	}
 
@@ -66,15 +63,17 @@ public class ShoppingCart{
 	public synchronized double getTotal(){
 		return total;
 	}
-	
-	public int getNumberOfItem(){
-		return num;
-	}
 
 	public synchronized void clear(){
 		items.clear();
-		num = 0;
 		total = 0;
+	}
+	
+	public boolean hasProduct(Product product){
+		for(ShoppingCartItem item: items){
+			if(item.getProduct().equals(product))return true;
+		}
+		return false;
 	}
 	
 	@Override

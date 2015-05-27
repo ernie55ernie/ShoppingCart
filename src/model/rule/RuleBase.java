@@ -8,16 +8,19 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-
-import com.google.common.collect.ArrayListMultimap;
+import java.util.Set;
 
 import model.cart.ShoppingCart;
 import model.entity.Customer;
 import model.entity.Product;
 import model.facade.CustomerFacade;
 import model.facade.ProductFacade;
+
+import com.google.common.collect.ArrayListMultimap;
 
 /**
  * {@link RuleBase} stores inference {@link Rule} from {@link ShoppingCart}} data using {@link Map}.
@@ -46,6 +49,16 @@ public class RuleBase {
 	/**
 	 * 
 	 */
+	private Set<Product> products;
+	
+	/**
+	 * 
+	 */
+	private Map<Customer, Integer> customersOccurance;
+	
+	/**
+	 * 
+	 */
 	private List<Rule> list;
 	
 	/**
@@ -56,6 +69,8 @@ public class RuleBase {
 		antecedentMap = ArrayListMultimap.create();
 		consequentMap = ArrayListMultimap.create();
 		list = new ArrayList<Rule>();
+		products = new HashSet<Product>();
+		customersOccurance = new HashMap<Customer, Integer>();
 	}
 	
 	/**
@@ -81,23 +96,28 @@ public class RuleBase {
 	 */
 	private void addRule(String string){
 		
-		int equal = string.indexOf('=');
-		String[] shoppingCartArray = string.substring(equal + 1).split(",");
+		String[] shoppingCartArray = string.split(",");
 		int length = shoppingCartArray.length;
-		if(length < 3) return;
+		if(length < 2) return;
 		
 		int customerId = Integer.parseInt(shoppingCartArray[0].substring(1)) - 1;
 		Customer customer = CustomerFacade.getInstance().getList().get(customerId);
-		
+		if(customersOccurance.containsKey(customer)){
+			customersOccurance.put(customer, customersOccurance.get(customer) + 1);
+		}else{
+			customersOccurance.put(customer, 1);
+		}
 		List<Product> productList = ProductFacade.getInstance().getList();
 		int currentItem, currentIteration;
+		
 		for(currentItem = 1; currentItem < length; currentItem++){
 			List<Product> antecedent = new ArrayList<Product>();
 			List<Product> consequent = new ArrayList<Product>();
 			for(currentIteration = 1; currentIteration < shoppingCartArray.length; currentIteration++){
-				antecedent.add(
-						productList.get(Integer.parseInt(shoppingCartArray[currentIteration]
-								.substring(1)) - 1));
+				Product product = productList.get(Integer.parseInt(shoppingCartArray[currentIteration]
+						.substring(1)) - 1);
+				antecedent.add(product);
+				products.add(product);
 			}
 			consequent.add(antecedent.remove(currentItem - 1));
 			Rule rule = new Rule(customer, antecedent, consequent);
@@ -123,20 +143,6 @@ public class RuleBase {
 		return objects;
 	}
 	
-	@Override
-	public String toString(){
-		StringBuffer sb = new StringBuffer();
-		for(Rule rule: values()){
-			sb.append(rule);
-			/*sb.append(' ');
-			sb.append(rule.antecedentString());
-			sb.append(' ');
-			sb.append(rule.consequentString());*/
-			sb.append("\n");
-		}
-		return sb.toString();
-	}
-	
 	/**
 	 * @param customer
 	 * @param antecedent
@@ -144,7 +150,7 @@ public class RuleBase {
 	 * @param value
 	 * @return
 	 */
-	public Rule put(String customer, String antecedent, String consequent, Rule value){
+	private Rule put(String customer, String antecedent, String consequent, Rule value){
 		customerMap.put(customer, value);
 		antecedentMap.put(antecedent, value);
 		consequentMap.put(consequent, value);
@@ -192,6 +198,10 @@ public class RuleBase {
 		return consequentMap.containsKey(consequentString);
 	}
 	
+	/**
+	 * @param v
+	 * @return
+	 */
 	public boolean contains(Rule v){
 		return list.contains(v);
 	}
@@ -201,5 +211,33 @@ public class RuleBase {
 	 */
 	public List<Rule> values(){
 		return list;
+	}
+	
+	/**
+	 * @return
+	 */
+	public Set<Product> products(){
+		return products;
+	}
+	
+	/**
+	 * @return
+	 */
+	public Map<Customer, Integer> customers(){
+		return customersOccurance;
+	}
+	
+	@Override
+	public String toString(){
+		StringBuffer sb = new StringBuffer();
+		for(Rule rule: values()){
+			sb.append(rule);
+			/*sb.append(' ');
+			sb.append(rule.antecedentString());
+			sb.append(' ');
+			sb.append(rule.consequentString());*/
+			sb.append("\n");
+		}
+		return sb.toString();
 	}
 }

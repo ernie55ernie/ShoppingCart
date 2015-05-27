@@ -37,12 +37,12 @@ public abstract class EnumStrategy {
 	 */
 	public Object[][] genObjectArray(){
 		Object[][] objectArray = new Object[enumerateList.size() * cus.size()][2];
-        System.out.println(enumerateList.size() * cus.size());
+        // System.out.println(enumerateList.size() * cus.size());
 		int i, curc = 0, curs = 0;
         for(i = 0; i < enumerateList.size() * cus.size(); i++){
         	curc = i / enumerateList.size();
         	curs = i % enumerateList.size();
-        	System.out.print("{" + cus.get(curc) + "," + enumerateList.get(curs) + "}" + (i == enumerateList.size() * cus.size() - 1 ? "" : ","));
+        	// System.out.print("{" + cus.get(curc) + "," + enumerateList.get(curs) + "}" + (i == enumerateList.size() * cus.size() - 1 ? "" : ","));
         	objectArray[i][0] = cus.get(curc);
         	objectArray[i][1] = enumerateList.get(curs);
         }

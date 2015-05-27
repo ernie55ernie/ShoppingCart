@@ -2,6 +2,8 @@ package model.entity;
 
 import java.io.Serializable;
 
+import org.joda.time.LocalDate;
+
 /**
  *
  * @author Ernie
@@ -20,6 +22,8 @@ public class Customer implements Serializable{
 	private String address;
 
 	private String cityRegion;
+	
+	private LocalDate birthday;
 
 	public Customer(){}
 
@@ -123,6 +127,28 @@ public class Customer implements Serializable{
 	 */
 	public void setCityRegion(String cityRegion) {
 		this.cityRegion = cityRegion;
+	}
+	
+	
+	/**
+	 * @return the birthday
+	 */
+	public LocalDate getBirthday() {
+		return birthday;
+	}
+
+	/**
+	 * @param birthday the birthday to set
+	 */
+	public void setBirthday(int year, int month, int day) {
+		this.birthday = new LocalDate(year, month, day);
+	}
+
+	/**
+	 * @param birthday the birthday to set
+	 */
+	public void setBirthday(LocalDate birthday) {
+		this.birthday = birthday;
 	}
 
 	@Override public int hashCode(){

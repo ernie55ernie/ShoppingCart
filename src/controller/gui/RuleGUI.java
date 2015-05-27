@@ -6,12 +6,14 @@ package controller.gui;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 
@@ -37,6 +39,18 @@ public class RuleGUI extends JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	
+	/**
+	 * 
+	 */
+	private JFileChooser fcBuyList = new JFileChooser(new File(
+				System.getProperty("user.dir")));
+
+	/**
+	 * 
+	 */
+	private JButton btnBuyList = new JButton("Buy List");
 	
 	/**
 	 * 
@@ -158,6 +172,8 @@ public class RuleGUI extends JFrame{
 		btnNotAccept = new JButton("Not accept");
 		btnNotAccept.addActionListener(buttonListener);
 		getContentPane().add(btnNotAccept, BorderLayout.LINE_END);
+		
+		
 	}
 /*
 	private void loadRuleTable(){

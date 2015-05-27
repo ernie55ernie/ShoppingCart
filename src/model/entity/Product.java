@@ -19,6 +19,8 @@ public class Product implements Serializable{
 	private Date lastUpdate;
 
 	private Category category;
+	
+	private Integer profit;
 
 	public Product(){}
 	
@@ -102,6 +104,20 @@ public class Product implements Serializable{
 	 */
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	/**
+	 * @return the profit
+	 */
+	public Integer getProfit() {
+		return profit;
+	}
+
+	/**
+	 * @param profit the profit to set
+	 */
+	public void setProfit(Integer profit) {
+		this.profit = profit;
 	}
 
 	@Override

@@ -75,3 +75,17 @@
 ¥ý»¡©ú³W«h¤§­pºâ¦p¦ó¶i¦æ³Ì¨Î¤Æ¡H
 
 ¦p¤µ¤Ñ©Ò«Å§G¡A¤U¶g¥æPRJ2&¤p¦Ò¡CPRJ2¦Ò¼{possibility¦Ó«Dprobability¡A¥u­n¦³¥i¯à´N¥i¥H±ÀÂË¡A­«ÂI¦b­n»¡©ú¸ê®Æµ²ºc»P³W«h±À½×¤è¦¡¡A¦p¦ó¨ÏÅÞ¿è±À½×Àu¤Æ¡]³Ì§Ö±À½×¥X¨Ó¡^¡C½Ð¦^µª¡G·í§A±ÀÂË¶Rª««~2¦Ó«È¤á«o¦^µª¡y¤£¶R¡z¡A¦p¦ó±À½×¨ä¥L±ÀÂË¡H
+
+2015§@·~3¡GÁÊª«¤§±ø¥ó¾÷²v
+©µÄò2015§@·~2¡A¥i¥Ñ¹L¥h¤§ÁÊª«²M³æ¬°°V½m¸ê®Æ¶°¡A²£¥Í¬ÛÃöÁÊª«³W«h¡C
+[¿é¤J] ¦p§@·~2¯à²£¥Í°V½m¸ê®Æ¶°¤§ÁÊª«²M³æ¡A¦s¦¨¤@­ÓCSV®æ¦¡ÀÉ¡C¨Ã¯àÅª¤J°V½m¸ê®Æ¶°¤§ÁÊª«²M³æCSVÀÉ¡C´ú¸Õ®É¥hÅª¨ú«e¤@¦ì¦P¾Ç²£¥Í¤§CSVÀÉ°µÅçÃÒ¡C
+[¿é¥X] ¨Ì¿é¤JÀÉ¤§ÁÊª«²M³æ²£¥Í²£¥Í¬ÛÃöÁÊª«³W«h»P¹ïÀ³¾÷²v¡C½Ðºâ¥X¡G(1)«~j³Q«Èi¶Rªº¾÷²v­È¡A(2)«Èi¶R«~jªº¾÷²v­È¡C½Ð¥Ñ¦¹¶l±H¼s§iµ¹«Èi¡A±ÀÂË¤T¥ó«ÈiÁÊ¶R¾÷²v³Ì°ªªº°Ó«~¡C
+°²³]¤wª¾¥Ø«e«ÈxªºÁÊ¶Rª««~¶°¦X¬°{«~y}¡A½Ðºâ¥X±µ¤U¨Ó¡G(3)«~z³Q«Èx¶Rªº¾÷²v­È¡A(4)«Èx¶R«~zªº¾÷²v­È¡C½Ð½u¤W§Y®É±ÀÂË«Èx¤T¥ó¥LÁÊ¶R¾÷²v³Ì°ªªº°Ó«~¡C
+µû¤À­«ÂI¦b»¡©ú¾÷²v¬O¦p¦óºâ¥X¡C
+
+¥i¦Ò¼{¼W¥[¥\¯à¡G
+ƒÜ	¥i³]©w¤£¦PÅU«È¹ï¤£¦Pª««~ªºÁÊ¶R¾÷²v¤À§G¤£¦P¡C¥Ñ¦¹¨Ó²£¥Í§ó¹ê¥Îªº°V½mÁÊª«²M³æ¡C
+ƒÜ	¥i³]©w¤£¦P°Ó«~ªºÀò§Q­È¤£¦P¡A¥Zµn¤j¤pªº®Ä¥Î»P¼s§i¶O¤£¦P¡C§Æ±æ³Ì¤j¤ÆÀò§Q¾÷²v¡]Àò§Q­È*ÁÊ¶R¾÷²v¡^¡C
+ƒÜ	¨C¤@ÅU«È¦³¦h¦¸ªºÁÊª«²M³æ¡A¤À¤£¦P¤é´Á®É¶¡¡A¦p¥Í¤é¡B¹L¸`¡B¶g´Á±ÄÁÊ¡C§â®É¶¡¦]¯À¦Ò¼{¶i¨Ó¡C
+ƒÜ	¤À¸s¡G§ä¥X»P«Èx¦³Ãþ¦üÁÊª«¦æ¬°¡]ÁÊª«²M³æ¡^ªºÅU«È¶°¦X¡AºÙ¬°¡y«È¸sx¡z¡C§ï¥Ñ«È¸sx¥h¹w´ú«ÈxÁÊ¶R¾÷²v³Ì°ªªº°Ó«~¡C
+ƒÜ	«Èxªº¥Ø«eÁÊ¶Rª««~¶°¦X¥i§t¦h¥óª««~¡A¦p{«~p,«~q,«~r}¡A¦P®É¨Ó¹w´ú«ÈxÁÊ¶R¾÷²v³Ì°ªªº°Ó«~¡C

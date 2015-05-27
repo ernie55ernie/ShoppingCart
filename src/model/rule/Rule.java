@@ -51,17 +51,35 @@ public class Rule {
 	public String antecedentString(){
 		String string = customer.toString();
 		for(Product product: antecedent){
-			string = string + '*' + product;
+			string = string + ',' + product;
 		}
 		return string;
 	}
 	
+	/**
+	 * @return
+	 */
 	public String consequentString(){
 		String string = consequent.get(0).toString();
 		for(int i = 1; i < consequent.size(); i++){
 			string = string + '+' + consequent.get(i);
 		}
 		return string;
+	}
+	
+	/**
+	 * @return
+	 */
+	public Customer getCustomer(){
+		return customer;
+	}
+	
+	/**
+	 * @param product
+	 * @return
+	 */
+	public boolean containProduct(Product product){
+		return antecedent.contains(product) || consequent.contains(product);
 	}
 	
 	@Override

@@ -21,8 +21,12 @@
   </class>  
   <association id="3">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="4" name="list"/>      
-      <multiplicity id="5" minimum="0" maximum="2147483647"/>    
+      <attribute id="4" name="list">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="5" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
