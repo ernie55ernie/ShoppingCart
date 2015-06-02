@@ -29,6 +29,7 @@ public class Customer implements Serializable{
 
 	public Customer(Integer id){
 		this.id = id;
+		this.email = "b01505025@ntu.edu.tw";
 	}
 	
 	public Customer(Integer id, String name){

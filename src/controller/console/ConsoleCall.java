@@ -14,10 +14,10 @@ import model.facade.ProductFacade;
 import model.probability.Probability;
 import model.probability.ProbabilityBase;
 import model.rule.RuleBase;
-import controller.gui.RuleGUI;
 import controller.strategy.EnumStrategy;
 import controller.strategy.NonRepeatableEnum;
 import controller.strategy.RepeatableEnum;
+import controller.utils.Utils;
 
 /**
  * @author ernie
@@ -127,7 +127,7 @@ public class ConsoleCall {
 		//System.out.println()
 		pb = new ProbabilityBase(rb, sl);
 
-		new RuleGUI(ShoppingCartUtils.addShoppingListTime(sl), rb, pb);
+		// new RuleGUI(ShoppingCartUtils.addShoppingListTime(sl), rb, pb);
 		
 		System.out.print("Open profit mode (y for yes, n for no):");
 		char p = in.nextLine().toLowerCase().charAt(0);
@@ -142,9 +142,9 @@ public class ConsoleCall {
 		}else{
 			List<Probability> pl;
 			if(conditionalProbability.contains("客"))
-				if(p == 'n')
+				if(p == 'n'){
 					pl = pb.getHighestThreeProduct(conditionalProbability);
-				else{
+				}else{
 					for(Product product :rb.products()){
 						System.out.println(product + ": " + product.getProfit());
 					}
@@ -152,9 +152,12 @@ public class ConsoleCall {
 				}
 			else
 				pl = pb.getByCondition(conditionalProbability);	
+			String content = "";
 			for(Probability probability: pl){
+				content += probability;
 				System.out.println(probability);
 			}	
+			Utils.sendEmail("b01505025@ntu.edu.tw", "Recommand products", content);
 		}
 	}
 }

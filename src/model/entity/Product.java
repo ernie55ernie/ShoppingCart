@@ -20,10 +20,10 @@ public class Product implements Serializable{
 
 	private Category category;
 	
-	private Integer profit;
+	private Double profit;
 
 	public Product(){
-		profit = (int)(Math.random() * 10);
+		profit = Math.random();
 	}
 	
 	public Product(Integer id, String name){
@@ -111,14 +111,14 @@ public class Product implements Serializable{
 	/**
 	 * @return the profit
 	 */
-	public Integer getProfit() {
+	public Double getProfit() {
 		return profit;
 	}
 
 	/**
 	 * @param profit the profit to set
 	 */
-	public void setProfit(Integer profit) {
+	public void setProfit(Double profit) {
 		this.profit = profit;
 	}
 
