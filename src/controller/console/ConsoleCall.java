@@ -125,39 +125,89 @@ public class ConsoleCall {
 	 */
 	public static void calculateProbability(){
 		//System.out.println()
-		pb = new ProbabilityBase(rb, sl);
+		/**
+		 * Using multithread to cope with big data 
+		 */
+		LoadProbability loadProbability = new LoadProbability();
+		loadProbability.start();
 
 		// new RuleGUI(ShoppingCartUtils.addShoppingListTime(sl), rb, pb);
+		InputProbability inputProbability = new InputProbability();
+		inputProbability.start();
 		
-		System.out.print("Open profit mode (y for yes, n for no):");
-		char p = in.nextLine().toLowerCase().charAt(0);
-		
-		System.out.print("Please enter the condition and the result of the conditional probability: ");
-		/** Using Scanner nextLine() method instead of next() method. Because next() will stop input stream
-		 *	while space occurs.
-		 */
-		String conditionalProbability = in.nextLine();
-		if(conditionalProbability.contains("|")){
-			System.out.println(pb.getByProbability(conditionalProbability));
-		}else{
-			List<Probability> pl;
-			if(conditionalProbability.contains("客"))
-				if(p == 'n'){
-					pl = pb.getHighestThreeProduct(conditionalProbability);
-				}else{
-					for(Product product :rb.products()){
-						System.out.println(product + ": " + product.getProfit());
-					}
-					pl = pb.getHighestThreeProfit(conditionalProbability);
-				}
-			else
-				pl = pb.getByCondition(conditionalProbability);	
-			String content = "";
-			for(Probability probability: pl){
-				content += probability;
-				System.out.println(probability);
-			}	
-			Utils.sendEmail("b01505025@ntu.edu.tw", "Recommand products", content);
+	}
+	
+	private static class LoadProbability implements Runnable{
+		private Thread t; 
+		   
+		@Override
+		public void run() {
+			pb = new ProbabilityBase(rb, sl);
 		}
+		
+		public void start()
+		   {
+		      System.out.println("Start to load the probability");
+		      if (t == null)
+		      {
+		         t = new Thread (this, "Probability");
+		         t.start ();
+		      }
+		   }
+	}
+	
+	private static class InputProbability implements Runnable{
+		private Thread t; 
+		   
+		@Override
+		public void run() {
+			System.out.print("Open profit mode (y for yes, n for no):");
+			char p = in.nextLine().toLowerCase().charAt(0);
+			
+			System.out.print("Please enter the condition and the result of the conditional probability: ");
+			/** Using Scanner nextLine() method instead of next() method. Because next() will stop input stream
+			 *	while space occurs.
+			 */
+			String conditionalProbability = in.nextLine();
+			if(conditionalProbability.contains("|")){
+				System.out.println(pb.getByProbability(conditionalProbability));
+			}else{
+				List<Probability> pl;
+				if(conditionalProbability.contains("客"))
+					if(p == 'n'){
+						pl = pb.getHighestThreeProduct(conditionalProbability);
+					}else{
+						for(Product product :rb.products()){
+							System.out.println(product + ": " + product.getProfit());
+						}
+						pl = pb.getHighestThreeProfit(conditionalProbability);
+					}
+				else
+					pl = pb.getByCondition(conditionalProbability);	
+				String content = "";
+				for(Probability probability: pl){
+					String string = probability.toString();
+					content += string.substring(0, string.indexOf('|')) + "\n";
+					System.out.println(probability);
+				}
+				/**
+				 * Sending e-mail 
+				 */
+				System.out.print("Please enter your e-mail: ");
+				String email = in.nextLine();
+				Utils.sendEmail(email, "Recommand products", content);
+				Utils.postFBMessage(content);
+			}
+		}
+		
+		public void start()
+		   {
+		      System.out.println("Start to load the probability");
+		      if (t == null)
+		      {
+		         t = new Thread (this, "Input");
+		         t.start ();
+		      }
+		   }
 	}
 }
