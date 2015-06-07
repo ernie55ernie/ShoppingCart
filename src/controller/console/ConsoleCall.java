@@ -135,6 +135,7 @@ public class ConsoleCall {
 		InputProbability inputProbability = new InputProbability();
 		inputProbability.start();
 		
+		Thread.yield();
 	}
 	
 	private static class LoadProbability implements Runnable{
@@ -196,13 +197,13 @@ public class ConsoleCall {
 				System.out.print("Please enter your e-mail: ");
 				String email = in.nextLine();
 				Utils.sendEmail(email, "Recommand products", content);
-				Utils.postFBMessage(content);
+				Utils.postFBMessage("Recommand products\n" + content);
 			}
 		}
 		
 		public void start()
 		   {
-		      System.out.println("Start to load the probability");
+		      System.out.println("Start to accept user input");
 		      if (t == null)
 		      {
 		         t = new Thread (this, "Input");
