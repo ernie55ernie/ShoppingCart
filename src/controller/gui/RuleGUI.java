@@ -80,11 +80,13 @@ public class RuleGUI extends JFrame{
 	/**
 	 * 
 	 */
+	@SuppressWarnings("unused")
 	private JButton btnImply;
 	
 	/**
 	 * 
 	 */
+	@SuppressWarnings("unused")
 	private JButton btnNotAccept;
 	
 	/**
@@ -110,6 +112,7 @@ public class RuleGUI extends JFrame{
 	/**
 	 * 
 	 */
+	@SuppressWarnings("unused")
 	private ActionListener buttonListener;
 	
 	/**
@@ -294,6 +297,7 @@ public class RuleGUI extends JFrame{
 	 * @author ernie
 	 *
 	 */
+	@SuppressWarnings("unused")
 	private class RuleEventListener implements mxIEventListener{
 		@Override
 		public void invoke(Object arg0, mxEventObject arg1) {
@@ -343,6 +347,7 @@ public class RuleGUI extends JFrame{
 	 * @author ernie
 	 *
 	 */
+	@SuppressWarnings("unused")
 	private class ButtonListener implements ActionListener{
 
 		/* (non-Javadoc)
